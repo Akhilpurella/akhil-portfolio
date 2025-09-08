@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Akhil Purella — Portfolio</title>
+  <meta name="description" content="Full‑stack engineer portfolio: React, Angular, Spring Boot, Kafka, AWS/Azure/GCP.">
+  <style>
+    :root { --fg:#0f172a; --muted:#475569; --card:#ffffff; --bg:#f8fafc; --primary:#0ea5e9; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, Noto Sans; color:var(--fg); background:var(--bg); }
+    header { padding:40px 16px; text-align:center; }
+    header h1 { margin:0 0 8px; font-size: clamp(28px, 5vw, 42px); letter-spacing:-.02em; }
+    header p { margin:0; color:var(--muted); }
+    .container { max-width:1080px; margin:0 auto; padding: 0 16px 48px; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap:16px; }
+    .card { background:var(--card); border:1px solid #e2e8f0; border-radius:16px; padding:18px; transition: transform .12s ease, box-shadow .12s ease; }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(15,23,42,.08); }
+    .tag { display:inline-block; background:#e0f2fe; color:#0369a1; padding:2px 8px; border-radius:999px; font-size:12px; margin-right:6px; }
+    h3 { margin:8px 0; font-size:18px; }
+    a { color:var(--primary); text-decoration:none; }
+    footer { text-align:center; color:var(--muted); padding:24px; }
+    .skills { display:flex; flex-wrap:wrap; gap:8px; justify-content:center; margin:16px 0 32px; }
+    .skills span { background:#eef2ff; color:#3730a3; padding:6px 10px; border-radius:999px; font-size:12px; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Akhil Purella</h1>
+    <p>Full‑stack engineer • React/Angular • Spring Boot • Kafka • AWS/Azure/GCP</p>
+    <div class="skills">
+      <span>React</span><span>Angular</span><span>Spring Boot</span><span>Kafka</span><span>RabbitMQ</span><span>ActiveMQ</span><span>AWS</span><span>Azure</span><span>GCP</span><span>PostgreSQL</span><span>Oracle</span><span>MongoDB</span>
+    </div>
+  </header>
+  <div class="container">
+    <div class="grid">
+      <a class="card" href="./projects/infinite-hr-finance-portal/">
+        <div><span class="tag">Enterprise</span><span class="tag">AWS</span></div>
+        <h3>Infinite HR/Finance Portal</h3>
+        <p>React dashboards + Spring Boot microservices, Kafka sync, MySQL, CloudWatch monitoring.</p>
+      </a>
+      <a class="card" href="./projects/unitedhealth-claims-platform/">
+        <div><span class="tag">Healthcare</span><span class="tag">Azure</span></div>
+        <h3>UnitedHealth Claims Platform</h3>
+        <p>Angular portals, Spring Boot services, Kafka Streams fraud alerts, HIPAA-conscious patterns.</p>
+      </a>
+      <a class="card" href="./projects/wsfs-banking-microservices/">
+        <div><span class="tag">Banking</span><span class="tag">AWS</span></div>
+        <h3>WSFS Banking Microservices</h3>
+        <p>Authentication, transfers, loans; Spring Boot + Kafka; Oracle SQL optimizations.</p>
+      </a>
+      <a class="card" href="./projects/tjx-retail-platform-web/">
+        <div><span class="tag">Retail</span><span class="tag">Azure</span></div>
+        <h3>TJX Retail Platform Web</h3>
+        <p>React(Vite) app for catalog, orders, checkout; E2E tests with Selenium/Cucumber.</p>
+      </a>
+      <a class="card" href="./projects/newgen-workflow-automation/">
+        <div><span class="tag">Workflow</span><span class="tag">GCP</span></div>
+        <h3>Newgen Workflow Automation</h3>
+        <p>Document routing/indexing; ActiveMQ + MongoDB; React dashboards.</p>
+      </a>
+    </div>
+    <p style="text-align:center;margin-top:24px;">
+      <a href="./README.md">View repository README</a> ·
+      <a href="mailto:akhilpurella18@gmail.com">Email</a>
+    </p>
+  </div>
+  <footer>© 2025 Akhil Purella · MIT License</footer>
+</body>
+</html>
