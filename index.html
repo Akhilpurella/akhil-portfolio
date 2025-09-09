@@ -1,84 +1,228 @@
-<header>
-  <img src="profile.jpg" alt="Akhil Purella" style="width:150px;height:150px;border-radius:50%;margin-bottom:1rem;">
- 
-</header>
-
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Akhil Purella — Portfolio</title>
+  <meta name="description" content="Akhil Purella — Full-Stack Developer portfolio (React/Angular, Spring Boot, Kafka, AWS/Azure/GCP).">
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #f9fafb; color: #1e293b; line-height: 1.6; }
-    header { background: #0ea5e9; color: white; padding: 2rem; text-align: center; }
-    header h1 { margin: 0; font-size: 2.5rem; }
-    section { max-width: 900px; margin: 2rem auto; padding: 1.5rem; background: white; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
-    h2 { color: #0ea5e9; margin-top: 0; }
-    ul { padding-left: 20px; }
-    a { color: #0ea5e9; text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    footer { text-align: center; padding: 1rem; color: #64748b; }
+    /* ====== Base / Theme ====== */
+    :root{
+      --bg:#f7fafc; --card:#ffffff; --ink:#0f172a; --muted:#475569;
+      --brand:#0ea5e9; --ring:#bae6fd; --line:#e2e8f0;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;
+         color:var(--ink);background:var(--bg);line-height:1.6}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+
+    /* ====== Header / Hero ====== */
+    header.hero{
+      background:linear-gradient(180deg,#10b2ea 0%, #0ea5e9 60%, #0ea5e9 100%);
+      color:#fff;padding:56px 0 32px;border-bottom:1px solid var(--line);
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{font-weight:700;font-size:18px;letter-spacing:.3px}
+    .nav a{color:#fff;opacity:.95}
+    .links{display:flex;gap:16px;flex-wrap:wrap}
+    .hero-grid{display:grid;grid-template-columns:140px 1fr;gap:24px;align-items:center;margin-top:24px}
+    .pfp{width:140px;height:140px;border-radius:50%;object-fit:cover;border:4px solid rgba(255,255,255,.6);background:#fff}
+    .title{margin:0;font-size:40px;line-height:1.1}
+    .subtitle{margin:6px 0 0;color:#e6f6fe}
+
+    /* ====== Sections / Cards ====== */
+    section{padding:28px 0}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+    h2{margin:0 0 12px;font-size:24px;color:var(--brand)}
+    .grid{display:grid;gap:16px}
+    @media (min-width:900px){ .grid.cols-2{grid-template-columns:1fr 1fr} }
+    ul.clean{margin:8px 0 0;padding-left:18px}
+    .pill{display:inline-block;padding:6px 10px;border:1px solid var(--line);border-radius:999px;background:#fff;margin:6px 6px 0 0;font-size:13px}
+    .item{padding:14px 0;border-top:1px dashed var(--line)}
+    .item:first-child{border-top:none}
+    .role{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+    .role b{font-size:16px}
+    .role .when{color:var(--muted);font-size:13px}
+    .role .where{color:var(--muted);font-size:13px}
+    footer{padding:28px 0;text-align:center;color:var(--muted)}
+    .cta{display:inline-block;background:var(--brand);color:#fff;border:none;border-radius:999px;padding:10px 16px}
+    .cta:hover{filter:brightness(.95)}
+
+    /* anchor offset for sticky header on mobile */
+    .anchor{scroll-margin-top:80px}
   </style>
 </head>
 <body>
-  <header>
-    <h1>Akhil Purella</h1>
-    <p>Full-Stack Developer • React/Angular • Spring Boot • Kafka • AWS/Azure/GCP</p>
+  <!-- ====== HERO ====== -->
+  <header class="hero">
+    <div class="wrap">
+      <nav class="nav">
+        <div class="brand">Akhil Purella</div>
+        <div class="links">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#skills">Skills</a>
+          <a href="#education">Education</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+
+      <div class="hero-grid">
+        <!-- If you add profile.jpg in repo root, it will show -->
+        <img class="pfp" src="profile.jpg" alt="Akhil Purella" onerror="this.style.display='none'">
+        <div>
+          <h1 class="title">Akhil Purella</h1>
+          <p class="subtitle">Full-Stack Developer · React/Angular · Spring Boot · Kafka · AWS/Azure/GCP</p>
+          <p style="margin-top:10px">
+            <a class="cta" href="#contact">Contact</a>
+            &nbsp; <a href="resume.pdf">Download Résumé</a>
+          </p>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <!-- About -->
-  <section id="about">
-    <h2>About</h2>
-    <p>
-      I am a full-stack developer with 8+ years of experience building scalable enterprise applications across 
-      healthcare, banking, retail, and workflow domains. My focus is on delivering reliable, secure, and user-friendly 
-      solutions that make a real impact.
-    </p>
-  </section>
+  <main class="wrap">
+    <!-- ====== ABOUT ====== -->
+    <section id="about" class="anchor">
+      <div class="card">
+        <h2>About</h2>
+        <p>
+          I am a full-stack developer with 8+ years of experience building scalable enterprise applications across
+          healthcare, banking, retail, and workflow domains. I specialize in modern microservices, data streaming,
+          and data-driven UIs with a strong focus on reliability, security, and developer experience.
+        </p>
+      </div>
+    </section>
 
-  <!-- Experience -->
-  <section id="experience">
-    <h2>Experience</h2>
-    <ul>
-      <li><strong>Infinite HR/Finance Portal:</strong> React dashboards + Spring Boot microservices, Kafka, MySQL, AWS.</li>
-      <li><strong>UnitedHealth Claims Platform:</strong> Angular portals + Spring Boot, Kafka Streams, HIPAA compliance.</li>
-      <li><strong>WSFS Banking Microservices:</strong> Authentication, transfers, loans; Spring Boot + Kafka + Oracle.</li>
-      <li><strong>TJX Retail Platform Web:</strong> React (Vite) app for catalog, orders, checkout with Azure scaling.</li>
-      <li><strong>Newgen Workflow Automation:</strong> React dashboards + Spring Boot microservices, ActiveMQ + MongoDB.</li>
-    </ul>
-  </section>
+    <!-- ====== EXPERIENCE ====== -->
+    <section id="experience" class="anchor">
+      <div class="card">
+        <h2>Experience</h2>
 
-  <!-- Skills -->
-  <section id="skills">
-    <h2>Skills</h2>
-    <ul>
-      <li>Frontend: React, Angular</li>
-      <li>Backend: Java (Spring Boot, Microservices)</li>
-      <li>Messaging: Kafka, RabbitMQ, ActiveMQ</li>
-      <li>Databases: Oracle, PostgreSQL, MySQL, MongoDB</li>
-      <li>Cloud: AWS, Azure, GCP</li>
-      <li>CI/CD: Jenkins, GitHub Actions, GitLab</li>
-    </ul>
-  </section>
+        <div class="item">
+          <div class="role">
+            <b>Full Stack Developer</b>
+            <span class="where">· Infinite Computer Solutions — Atlanta, GA</span>
+            <span class="when">· Mar 2023 – Present</span>
+          </div>
+          <ul class="clean">
+            <li>React dashboards for project tracking, timesheets, billing; Spring Boot microservices for HR/finance.</li>
+            <li>Kafka data sync across HR, payroll, finance; MySQL SPs/triggers for reporting.</li>
+            <li>Deployed on AWS (EC2, RDS, S3) with CloudWatch; Jenkins CI/CD; >80% unit test coverage.</li>
+          </ul>
+        </div>
 
-  <!-- Education -->
-  <section id="education">
-    <h2>Education</h2>
-    <p><strong>Master’s in Information Systems</strong>, Saint Louis University, USA</p>
-    <p><strong>Bachelor’s in Civil Engineering</strong>, [Your University], India</p>
-  </section>
+        <div class="item">
+          <div class="role">
+            <b>Full Stack Developer</b>
+            <span class="where">· Cardinal Healthcare — Columbus, OH</span>
+            <span class="when">· Mar 2022 – Feb 2023</span>
+          </div>
+          <ul class="clean">
+            <li>Angular portals; Spring Boot microservices for prescriptions, claims, supplier integrations.</li>
+            <li>Kafka for real-time claims & fraud alerts; PostgreSQL tuning; Azure + Kubernetes; GitLab CI.</li>
+            <li>Implemented HIPAA-conscious data handling; on-call incident response.</li>
+          </ul>
+        </div>
 
-  <!-- Contact -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Email: <a href="mailto:akhilpurella18@gmail.com">akhilpurella18@gmail.com</a></p>
-    <p>GitHub: <a href="https://github.com/Akhilpurella">github.com/Akhilpurella</a></p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/akhilpurella">linkedin.com/in/akhilpurella</a></p>
-  </section>
+        <div class="item">
+          <div class="role">
+            <b>Backend & API Developer</b>
+            <span class="where">· WSFS Bank — Wilmington, DE</span>
+            <span class="when">· Dec 2019 – Mar 2022</span>
+          </div>
+          <ul class="clean">
+            <li>Auth, funds transfer, account services with Spring Boot; high-volume REST APIs.</li>
+            <li>Kafka for fraud detection streams; Oracle SQL optimization; AWS; Jenkins CI.</li>
+            <li>PCI DSS / SOC2 alignment and audit support.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <div class="role">
+            <b>Software Developer</b>
+            <span class="where">· TJX Companies — Framingham, MA</span>
+            <span class="when">· Jun 2018 – Nov 2019</span>
+          </div>
+          <ul class="clean">
+            <li>Angular retail apps for catalog, orders, and checkout; Spring Boot inventory and payments.</li>
+            <li>RabbitMQ for order flows; PostgreSQL schemas; Azure + AKS; GitLab CI/CD.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <div class="role">
+            <b>Application Developer</b>
+            <span class="where">· Newgen Software — Bangalore, India</span>
+            <span class="when">· Mar 2017 – May 2018</span>
+          </div>
+          <ul class="clean">
+            <li>Document workflow microservices (routing, approvals, notifications) with Spring Boot.</li>
+            <li>React dashboards; ActiveMQ; MongoDB; GCP (Compute, Storage, Pub/Sub); Jenkins CI.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== SKILLS ====== -->
+    <section id="skills" class="anchor">
+      <div class="card">
+        <h2>Skills</h2>
+        <div class="grid cols-2">
+          <div>
+            <span class="pill">React</span>
+            <span class="pill">Angular</span>
+            <span class="pill">JavaScript</span>
+            <span class="pill">HTML5</span>
+            <span class="pill">CSS3</span>
+            <span class="pill">Bootstrap</span>
+          </div>
+          <div>
+            <span class="pill">Java · Spring Boot</span>
+            <span class="pill">REST APIs</span>
+            <span class="pill">Kafka / RabbitMQ / ActiveMQ</span>
+            <span class="pill">Oracle · PostgreSQL · MySQL · MongoDB</span>
+            <span class="pill">AWS · Azure · GCP</span>
+            <span class="pill">Jenkins · GitHub · GitLab</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== EDUCATION ====== -->
+    <section id="education" class="anchor">
+      <div class="card">
+        <h2>Education</h2>
+        <ul class="clean">
+          <li><b>Master of Science, Computer Science</b> — Saint Louis University, Saint Louis, MO — May 2025</li>
+          <li><b>Bachelor of Science, Computer Science</b> — Balaji Institute of Technology & Sciences, Warangal — 2014–2017</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ====== CONTACT ====== -->
+    <section id="contact" class="anchor">
+      <div class="card">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:akhilpurella18@gmail.com">akhilpurella18@gmail.com</a></p>
+        <p>Phone: <a href="tel:+13143999759">+1 (314) 399-9759</a></p>
+        <p>
+          <a href="https://github.com/Akhilpurella">GitHub</a> ·
+          <a href="https://linkedin.com/in/akhil-purella-662b57150">LinkedIn</a> ·
+          <a href="https://medium.com/@AkhilPurella">Medium</a>
+        </p>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    © 2025 Akhil Purella — Built with GitHub Pages
+    © <span id="y"></span> Akhil Purella · Built with GitHub Pages
   </footer>
+
+  <script>document.getElementById('y').textContent = new Date().getFullYear();</script>
 </body>
 </html>
