@@ -133,6 +133,76 @@
             opacity: 1;
         }
         
+        /* About Section */
+        .about-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        .about-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+        
+        .about-title {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .about-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 10px;
+        }
+        
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 20px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+        
+        .contact-icon {
+            margin-right: 10px;
+            color: var(--secondary);
+            font-size: 1.2rem;
+        }
+        
         /* Experience Section */
         .section-title {
             text-align: center;
@@ -270,6 +340,76 @@
             border-radius: 20px;
         }
         
+        /* Skills Section */
+        .skills-section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        .skills-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .skill-category {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .skill-category:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+        
+        .skill-title {
+            font-size: 1.3rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-title i {
+            margin-right: 10px;
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-item {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+        }
+        
+        .skill-item:last-child {
+            border-bottom: none;
+        }
+        
+        .skill-item i {
+            color: var(--primary);
+            margin-right: 10px;
+            font-size: 0.8rem;
+        }
+        
         /* Education Section */
         .education {
             display: flex;
@@ -388,6 +528,14 @@
                 border-left: 5px solid var(--primary);
                 border-right: none;
             }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+            }
         }
         
         /* Particle Background */
@@ -415,170 +563,9 @@
     
     <div class="container">
         <header class="header">
-            <img src="https://i.pravatar.cc/150?img=7" alt="Akhil Purella" class="profile-img">
+            <img src="profile.jpg" alt="Akhil Purella" class="profile-img">
             <h1 class="name">Akhil Purella</h1>
             <p class="title">Full Stack Developer with 8+ Years of Experience</p>
             
             <div class="social-links">
-                <a href="http://linkedin.com/in/akhil-purella-662b57150" class="social-link">
-                    <i class="fab fa-linkedin-in"></i>
-                </a>
-                <a href="https://medium.com/@AkhilPurella" class="social-link">
-                    <i class="fab fa-medium-m"></i>
-                </a>
-                <a href="https://github.com/Akhilpurella" class="social-link">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="mailto:akhilpurella18@gmail.com" class="social-link">
-                    <i class="fas fa-envelope"></i>
-                </a>
-            </div>
-        </header>
-        
-        <h2 class="section-title">Work Experience</h2>
-        
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3 class="role">Full Stack Developer</h3>
-                    <p class="company">Infinite Computer Solutions – Atlanta, GA</p>
-                    <span class="duration">Mar 2023 – Present</span>
-                </div>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3 class="role">Full Stack Developer</h3>
-                    <p class="company">Cardinal Health – Columbus, OH</p>
-                    <span class="duration">Mar 2022 – Feb 2023</span>
-                </div>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3 class="role">Backend & API Developer</h3>
-                    <p class="company">WSFS Bank – Wilmington, DE</p>
-                    <span class="duration">Dec 2019 – Mar 2022</span>
-                </div>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3 class="role">Software Developer</h3>
-                    <p class="company">TJX Companies – Framingham, MA</p>
-                    <span class="duration">June 2018 – Nov 2019</span>
-                </div>
-            </div>
-            
-            <div class="timeline-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content">
-                    <h3 class="role">Application Developer Intern</h3>
-                    <p class="company">Newgen Software Technologies – Bangalore, India</p>
-                    <span class="duration">Mar 2017 – May 2018</span>
-                </div>
-            </div>
-        </div>
-        
-        <h2 class="section-title">Education</h2>
-        
-        <div class="education">
-            <div class="education-card">
-                <div class="education-icon">
-                    <i class="fas fa-graduation-cap"></i>
-                </div>
-                <h3 class="education-title">Master of Science: Computer Science</h3>
-                <p class="education-institution">Saint Louis University</p>
-                <span class="education-duration">Expected May 2025</span>
-                <p>St Louis, MO</p>
-            </div>
-            
-            <div class="education-card">
-                <div class="education-icon">
-                    <i class="fas fa-university"></i>
-                </div>
-                <h3 class="education-title">Bachelor of Science: Computer Science</h3>
-                <p class="education-institution">Balaji Institute of Technology and Sciences</p>
-                <span class="education-duration">2014 - 2017</span>
-                <p>Warangal, India</p>
-            </div>
-        </div>
-        
-        <div class="footer">
-            <p>© 2023 Akhil Purella. All rights reserved.</p>
-            <p>akhilpurella18@gmail.com | +1 3143999759 | St Louis, MO 63108</p>
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        // Initialize particles.js
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: "#ffffff" },
-                shape: { type: "circle" },
-                opacity: { value: 0.5, random: true },
-                size: { value: 3, random: true },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: "#ffffff",
-                    opacity: 0.4,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 2,
-                    direction: "none",
-                    random: true,
-                    straight: false,
-                    out_mode: "out",
-                    bounce: false
-                }
-            },
-            interactivity: {
-                detect_on: "canvas",
-                events: {
-                    onhover: { enable: true, mode: "repulse" },
-                    onclick: { enable: true, mode: "push" },
-                    resize: true
-                }
-            },
-            retina_detect: true
-        });
-        
-        // Add scroll animations
-        document.addEventListener('DOMContentLoaded', function() {
-            const timelineItems = document.querySelectorAll('.timeline-item');
-            const educationCards = document.querySelectorAll('.education-card');
-            
-            function checkIfInView() {
-                timelineItems.forEach(item => {
-                    const position = item.getBoundingClientRect();
-                    if (position.top < window.innerHeight && position.bottom >= 0) {
-                        item.style.animation = 'fadeIn 1s ease-out forwards';
-                    }
-                });
-                
-                educationCards.forEach(card => {
-                    const position = card.getBoundingClientRect();
-                    if (position.top < window.innerHeight && position.bottom >= 0) {
-                        card.style.animation = 'fadeIn 1s ease-out forwards';
-                    }
-                });
-            }
-            
-            // Initial check
-            checkIfInView();
-            
-            // Check on scroll
-            window.addEventListener('scroll', checkIfInView);
-        });
-    </script>
-</body>
-</html>
+                <a href="http://linkedin.com/in/akhil-purella-662b57150"
