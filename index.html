@@ -1,284 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Akhil Purella - Portfolio</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Akhil Purella - Portfolio</title>
 
-  <!-- Bootstrap & Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
-    :root{
-      --bg1:#0f1028; --bg2:#1b1d3a; --bg3:#11122c;
-      --primary:#6c63ff; --secondary:#4cc9f0; --accent:#c084fc;
-      --ink:#f8fbff; --muted:#b9c3e6; --line:rgba(255,255,255,.14);
-      --chip-bg:rgba(255,255,255,.10); --chip-brd:rgba(255,255,255,.22);
-      --card:rgba(255,255,255,.10);
-    }
-    *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-    body{
-      color:var(--ink);
-      background: radial-gradient(90rem 30rem at -10% -10%, #1a1c3d 0%, transparent 60%),
-                  radial-gradient(60rem 20rem at 110% 0%, #151633 0%, transparent 60%),
-                  linear-gradient(120deg,var(--bg1),var(--bg2),var(--bg3));
-      background-size: 400% 400%;
-      animation: bgShift 18s ease-in-out infinite alternate;
-      min-height:100vh; overflow-x:hidden;
-    }
-    @keyframes bgShift{
-      from{background-position:0% 50%} to{background-position:100% 50%}
-    }
+  :root{
+    --bg1:#0f1028; --bg2:#1b1d3a; --bg3:#11122c;
+    --primary:#6c63ff; --secondary:#4cc9f0; --accent:#c084fc;
+    --ink:#f8fbff; --muted:#b9c3e6; --line:rgba(255,255,255,.14);
+    --chip-bg:rgba(255,255,255,.10); --chip-brd:rgba(255,255,255,.22);
+    --card:rgba(255,255,255,.10);
+    --band1:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+    --band2:linear-gradient(180deg, rgba(108,99,255,.14), rgba(76,201,240,.10));
+  }
 
-    .container{max-width:1100px;margin:0 auto;padding:20px}
+  *{box-sizing:border-box}
+  body{
+    margin:0; color:var(--ink); font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial;
+    background: linear-gradient(120deg,var(--bg1),var(--bg2),var(--bg3));
+    background-size: 400% 400%; animation:bgShift 18s ease-in-out infinite alternate;
+    overflow-x:hidden;
+  }
+  @keyframes bgShift{ from{background-position:0% 50%} to{background-position:100% 50%} }
 
-    /* Header */
-    .header{text-align:center;padding:58px 16px 36px}
-    .profile-img{
-      width:160px;height:160px;border-radius:50%;object-fit:cover;margin-bottom:18px;
-      border:4px solid var(--line); box-shadow:0 10px 30px rgba(0,0,0,.35)
-    }
-    .name{
-      font-size:3.2rem;font-weight:700;margin-bottom:6px;
-      background:linear-gradient(90deg,var(--secondary),var(--primary),var(--accent));
-      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-    }
-    .title{font-size:1.25rem;margin-bottom:16px;color:var(--muted)}
+  /* Top scroll progress bar */
+  .progressbar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--secondary),var(--primary));width:0;z-index:1000}
 
-    .social-links{display:flex;justify-content:center;gap:14px;margin:20px 0}
-    .social-link{
-      width:46px;height:46px;border-radius:10px;display:flex;align-items:center;justify-content:center;
-      background:var(--chip-bg); border:1px solid var(--chip-brd); color:#fff;font-size:18px;transition:.2s
-    }
-    .social-link:hover{transform:translateY(-3px);background:linear-gradient(135deg,rgba(108,99,255,.35),rgba(76,201,240,.25))}
+  /* Particles layer */
+  #particles-js{position:fixed;inset:0;z-index:-2;opacity:.55}
 
-    /* Section Title */
-    .section-title{
-      text-align:center;font-size:1.75rem;margin:36px 0 18px;position:relative
-    }
-    .section-title::after{
-      content:'';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);
-      width:120px;height:4px;border-radius:10px;
-      background:linear-gradient(90deg,var(--secondary),var(--primary))
-    }
+  /* Subtle dot-grid pattern overlay so background never looks empty */
+  .pattern{
+    position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.22;
+    background-image: radial-gradient(rgba(255,255,255,.15) 1px, transparent 1px);
+    background-size: 18px 18px;
+  }
 
-    /* Cards */
-    .cardx{
-      background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.08));
-      border:1px solid var(--line); border-radius:14px; padding:18px 18px;
-      box-shadow:0 10px 30px rgba(0,0,0,.25)
-    }
+  .container{max-width:1100px;margin:0 auto;padding:0 18px}
 
-    /* About */
-    .about-card{max-width:900px;margin:0 auto}
+  /* ==== Section bands (no blank space) ==== */
+  .band{padding:36px 0}
+  .band.alt{background:var(--band1); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+  .band.accent{background:var(--band2); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
 
-    /* Skills (compact with toggle) */
-    .skills-wrap{max-width:900px;margin:0 auto}
-    .chips{display:flex;flex-wrap:wrap;gap:8px}
-    .chip{
-      padding:7px 10px;border-radius:999px;font-size:.9rem;letter-spacing:.2px;
-      background:var(--chip-bg); border:1px solid var(--chip-brd)
-    }
-    .skills-rows{display:grid;gap:8px}
-    .skills-rows .row-collapse{display:flex;flex-wrap:wrap;gap:8px}
-    .hidden{display:none}
-    .toggle-btn{
-      margin-top:10px; display:inline-block; padding:8px 12px; border-radius:10px; cursor:pointer;
-      border:1px solid var(--line); background:rgba(255,255,255,.08); color:#eaf2ff; font-size:.9rem;
-    }
-    .toggle-btn:hover{background:linear-gradient(90deg,rgba(108,99,255,.25),rgba(76,201,240,.18))}
+  /* ==== Header / Hero (photo left, bio right) ==== */
+  .hero-grid{
+    display:grid; grid-template-columns:320px 1fr; gap:26px; align-items:center;
+  }
+  @media (max-width: 900px){
+    .hero-grid{grid-template-columns:1fr; text-align:center}
+    .bio .cta, .bio .social-links{justify-content:center}
+  }
+  .profile-wrap{display:flex; align-items:center; justify-content:center}
+  .profile-img{
+    width:280px; height:280px; border-radius:50%; object-fit:cover;
+    border:6px solid var(--line); box-shadow:0 18px 46px rgba(0,0,0,.38); background:#0b1226;
+  }
+  .name{
+    font-size:3rem; font-weight:700; margin:0 0 6px;
+    background:linear-gradient(90deg,var(--secondary),var(--primary),var(--accent));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+  }
+  .title{font-size:1.15rem;margin:4px 0 12px;color:var(--muted)}
+  .social-links{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0}
+  .social-link{
+    width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+    background:var(--chip-bg); border:1px solid var(--chip-brd); color:#fff;font-size:18px;transition:.2s
+  }
+  .social-link:hover{transform:translateY(-3px);background:linear-gradient(135deg,rgba(108,99,255,.35),rgba(76,201,240,.25))}
+  .chip-strip{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .chip{padding:7px 10px;border-radius:999px;font-size:.9rem;background:var(--chip-bg);border:1px solid var(--chip-brd)}
 
-    /* Timeline */
-    .timeline{position:relative;max-width:900px;margin:0 auto;padding:12px 0}
-    .timeline::before{content:'';position:absolute;left:50%;transform:translateX(-50%);width:3px;height:100%;background:linear-gradient(var(--secondary),var(--primary))}
-    .timeline-item{width:50%;padding:14px 26px;position:relative}
-    .timeline-item:nth-child(odd){left:0}
-    .timeline-item:nth-child(even){left:50%}
-    .timeline-content{background:var(--card);padding:16px;border-radius:12px;border:1px solid var(--line)}
-    .timeline-dot{width:16px;height:16px;background:linear-gradient(135deg,var(--secondary),var(--primary));border-radius:50%;position:absolute;top:20px;z-index:1;box-shadow:0 0 0 8px rgba(108,99,255,.18)}
-    .timeline-item:nth-child(odd) .timeline-dot{right:-8px}
-    .timeline-item:nth-child(even) .timeline-dot{left:-8px}
-    .role{font-size:1.05rem;font-weight:600;margin-bottom:4px}
-    .company{font-size:.95rem;color:#a7d9ff;margin-bottom:2px}
-    .duration{font-size:.9rem;color:#dfe6ff}
-    @media (max-width: 992px){
-      .timeline::before{left:26px;transform:none}
-      .timeline-item{width:100%;left:0!important;padding-left:58px}
-      .timeline-dot{left:18px}
-    }
+  /* Section Title */
+  .section-title{
+    text-align:center;font-size:1.65rem;margin:0 0 16px;position:relative
+  }
+  .section-title::after{
+    content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);
+    width:120px;height:3px;border-radius:10px;background:linear-gradient(90deg,var(--secondary),var(--primary))
+  }
 
-    /* Education */
-    .education{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
-    .education-card{text-align:center;max-width:600px}
+  /* Cards */
+  .cardx{
+    background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.08));
+    border:1px solid var(--line); border-radius:14px; padding:18px;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+    transform:translateY(14px) scale(.98); opacity:0;
+  }
+  .cardx.show{transform:none;opacity:1;transition:.65s cubic-bezier(.22,.65,.18,1)}
 
-    /* Contact */
-    .contact-card{max-width:900px;margin:0 auto}
-    .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    @media(max-width:768px){.contact-grid{grid-template-columns:1fr}}
+  /* About */
+  .about-card{max-width:900px;margin:0 auto}
 
-    /* Particles backdrop */
-    #particles-js{position:fixed;inset:0;z-index:-1}
+  /* Skills (compact w/toggle) */
+  .skills-wrap{max-width:900px;margin:0 auto}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .skills-rows{display:grid;gap:8px}
+  .row-collapse{display:flex;flex-wrap:wrap;gap:8px}
+  .hidden{display:none}
+  .toggle-btn{
+    margin-top:10px; display:inline-block; padding:7px 12px; border-radius:10px; cursor:pointer;
+    border:1px solid var(--line); background:rgba(255,255,255,.08); color:#eaf2ff; font-size:.9rem;
+  }
+  .toggle-btn:hover{background:linear-gradient(90deg,rgba(108,99,255,.25),rgba(76,201,240,.18))}
 
-    .footer{text-align:center;padding:26px 0;color:#c7d1f2;border-top:1px solid var(--line);margin-top:22px}
-  </style>
+  /* Timeline (Experience) */
+  .timeline{position:relative;max-width:900px;margin:0 auto;padding:6px 0}
+  .timeline::before{content:'';position:absolute;left:50%;transform:translateX(-50%);width:3px;height:100%;background:linear-gradient(var(--secondary),var(--primary))}
+  .timeline-item{width:50%;padding:12px 22px;position:relative}
+  .timeline-item:nth-child(odd){left:0}
+  .timeline-item:nth-child(even){left:50%}
+  .timeline-content{background:var(--card);padding:14px;border-radius:12px;border:1px solid var(--line)}
+  .timeline-dot{width:14px;height:14px;background:linear-gradient(135deg,var(--secondary),var(--primary));border-radius:50%;position:absolute;top:18px;z-index:1;box-shadow:0 0 0 8px rgba(108,99,255,.18)}
+  .timeline-item:nth-child(odd) .timeline-dot{right:-7px}
+  .timeline-item:nth-child(even) .timeline-dot{left:-7px}
+  .role{font-size:1rem;font-weight:600;margin-bottom:3px}
+  .company{font-size:.93rem;color:#a7d9ff;margin-bottom:2px}
+  .duration{font-size:.9rem;color:#dfe6ff}
+  @media (max-width: 992px){
+    .timeline::before{left:26px;transform:none}
+    .timeline-item{width:100%;left:0!important;padding-left:58px}
+    .timeline-dot{left:18px}
+  }
+
+  /* Education & Contact */
+  .education, .contact-card{max-width:900px;margin:0 auto}
+  .education-card{text-align:center}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:768px){.contact-grid{grid-template-columns:1fr}}
+
+  /* Footer */
+  .footer{text-align:center;padding:20px 0;color:#c7d1f2;border-top:1px solid var(--line)}
+</style>
 </head>
 <body>
+  <div class="progressbar" id="progress"></div>
   <div id="particles-js"></div>
+  <div class="pattern"></div>
 
-  <div class="container">
-    <!-- Header -->
-    <header class="header">
-      <!-- Use your own image file named profile.jpg in the repo root -->
-      <img src="profile.jpg" alt="Akhil Purella" class="profile-img">
-      <h1 class="name">Akhil Purella</h1>
-      <p class="title">Full-Stack Developer • React/Angular • Spring Boot • Kafka • AWS/Azure/GCP</p>
-      <div class="social-links">
-        <a href="https://linkedin.com/in/akhil-purella-662b57150" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        <a href="https://medium.com/@AkhilPurella" class="social-link" aria-label="Medium"><i class="fab fa-medium-m"></i></a>
-        <a href="https://github.com/Akhilpurella" class="social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
-        <a href="mailto:akhilpurella18@gmail.com" class="social-link" aria-label="Email"><i class="fas fa-envelope"></i></a>
-      </div>
-    </header>
-
-    <!-- About -->
-    <h2 class="section-title">About</h2>
-    <div class="cardx about-card">
-      <p class="mb-0">
-        Full-stack developer with 8+ years building scalable enterprise applications across healthcare, banking, retail,
-        and workflow automation. I specialize in resilient microservices, event streaming, and clean, data-driven UIs —
-        with a strong focus on reliability, security, and developer velocity.
-      </p>
-    </div>
-
-    <!-- Skills (compact with toggle) -->
-    <h2 class="section-title">Skills</h2>
-    <div class="cardx skills-wrap">
-      <div class="skills-rows">
-        <!-- Visible concise row -->
-        <div class="row-collapse">
-          <span class="chip">React</span>
-          <span class="chip">Angular</span>
-          <span class="chip">Java</span>
-          <span class="chip">Spring Boot</span>
-          <span class="chip">REST APIs</span>
-          <span class="chip">Kafka</span>
-          <span class="chip">AWS</span>
-          <span class="chip">PostgreSQL</span>
+  <!-- ===== HERO BAND ===== -->
+  <section class="band alt">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="profile-wrap">
+          <!-- Use your own image file named profile.jpg in the repo root -->
+          <img src="profile.jpg" alt="Akhil Purella" class="profile-img">
         </div>
-        <!-- Hidden extra skills -->
-        <div id="moreSkills" class="hidden">
-          <div class="row-collapse" style="margin-top:6px">
-            <span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">HTML5</span><span class="chip">CSS3</span>
-            <span class="chip">RabbitMQ</span><span class="chip">ActiveMQ</span><span class="chip">Oracle</span><span class="chip">MySQL</span><span class="chip">MongoDB</span>
+        <div class="bio">
+          <h1 class="name">Akhil Purella</h1>
+          <p class="title">Java Full-Stack Developer · React/Angular · Spring Boot · Kafka · AWS/Azure/GCP</p>
+
+          <div class="chip-strip">
+            <span class="chip">React</span><span class="chip">Angular</span>
+            <span class="chip">Spring Boot</span><span class="chip">REST APIs</span>
+            <span class="chip">Kafka</span><span class="chip">AWS</span><span class="chip">PostgreSQL</span>
           </div>
-          <div class="row-collapse" style="margin-top:6px">
-            <span class="chip">Azure</span><span class="chip">GCP</span><span class="chip">Docker</span><span class="chip">Kubernetes</span>
-            <span class="chip">Jenkins</span><span class="chip">GitHub</span><span class="chip">GitLab CI</span><span class="chip">JUnit</span><span class="chip">Mockito</span>
+
+          <div class="social-links">
+            <a href="https://linkedin.com/in/akhil-purella-662b57150" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://medium.com/@AkhilPurella" class="social-link" aria-label="Medium"><i class="fab fa-medium-m"></i></a>
+            <a href="https://github.com/Akhilpurella" class="social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="mailto:akhilpurella18@gmail.com" class="social-link" aria-label="Email"><i class="fas fa-envelope"></i></a>
           </div>
         </div>
-        <button id="toggleSkills" class="toggle-btn" aria-expanded="false">Show more skills</button>
       </div>
     </div>
+  </section>
 
-    <!-- Experience -->
-    <h2 class="section-title">Work Experience</h2>
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="role">Full Stack Developer</div>
-          <div class="company">Infinite Computer Solutions — Atlanta, GA</div>
-          <div class="duration">Mar 2023 – Present</div>
-        </div>
+  <!-- ===== ABOUT BAND ===== -->
+  <section class="band">
+    <div class="container">
+      <h2 class="section-title">About</h2>
+      <div class="cardx about-card">
+        <p class="mb-0">
+          Java full-stack developer with 8+ years building scalable enterprise apps across healthcare, banking,
+          retail, and workflow automation. I design resilient microservices, event streaming pipelines, and clean,
+          data-driven UIs with a focus on reliability, security, and developer velocity.
+        </p>
       </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="role">Full Stack Developer</div>
-          <div class="company">Cardinal Health — Columbus, OH</div>
-          <div class="duration">Mar 2022 – Feb 2023</div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="role">Backend & API Developer</div>
-          <div class="company">WSFS Bank — Wilmington, DE</div>
-          <div class="duration">Dec 2019 – Mar 2022</div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="role">Software Developer</div>
-          <div class="company">TJX Companies — Framingham, MA</div>
-          <div class="duration">Jun 2018 – Nov 2019</div>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-content">
-          <div class="role">Application Developer</div>
-          <div class="company">Newgen Software Technologies — Bangalore, India</div>
-          <div class="duration">Mar 2017 – May 2018</div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS BAND (compact) ===== -->
+  <section class="band accent">
+    <div class="container">
+      <h2 class="section-title">Skills</h2>
+      <div class="cardx skills-wrap">
+        <div class="skills-rows">
+          <!-- concise row -->
+          <div class="row-collapse">
+            <span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">React</span>
+            <span class="chip">Angular</span><span class="chip">REST APIs</span><span class="chip">Kafka</span>
+            <span class="chip">AWS</span><span class="chip">PostgreSQL</span>
+          </div>
+          <!-- hidden extras -->
+          <div id="moreSkills" class="hidden">
+            <div class="row-collapse" style="margin-top:6px">
+              <span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">HTML5</span><span class="chip">CSS3</span>
+              <span class="chip">RabbitMQ</span><span class="chip">ActiveMQ</span><span class="chip">Oracle</span><span class="chip">MySQL</span><span class="chip">MongoDB</span>
+            </div>
+            <div class="row-collapse" style="margin-top:6px">
+              <span class="chip">Azure</span><span class="chip">GCP</span><span class="chip">Docker</span><span class="chip">Kubernetes</span>
+              <span class="chip">Jenkins</span><span class="chip">GitHub</span><span class="chip">GitLab CI</span><span class="chip">JUnit</span><span class="chip">Mockito</span>
+            </div>
+          </div>
+          <button id="toggleSkills" class="toggle-btn" aria-expanded="false">Show more skills</button>
         </div>
       </div>
     </div>
+  </section>
 
-    <!-- Education -->
-    <h2 class="section-title">Education</h2>
-    <div class="education">
-      <div class="cardx education-card">
-        <div class="education-title"><b>Master of Science: Computer Science</b></div>
-        <div class="education-institution" style="color:#a7d9ff;margin:4px 0">Saint Louis University</div>
-        <div class="education-duration">May 2025</div>
+  <!-- ===== EXPERIENCE BAND ===== -->
+  <section class="band">
+    <div class="container">
+      <h2 class="section-title">Work Experience</h2>
+      <div class="cardx show" style="padding:0">
+        <div class="timeline" style="padding:14px 0">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="role">Full Stack Developer</div>
+              <div class="company">Infinite Computer Solutions — Atlanta, GA</div>
+              <div class="duration">Mar 2023 – Present</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="role">Full Stack Developer</div>
+              <div class="company">Cardinal Health — Columbus, OH</div>
+              <div class="duration">Mar 2022 – Feb 2023</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="role">Backend & API Developer</div>
+              <div class="company">WSFS Bank — Wilmington, DE</div>
+              <div class="duration">Dec 2019 – Mar 2022</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="role">Software Developer</div>
+              <div class="company">TJX Companies — Framingham, MA</div>
+              <div class="duration">Jun 2018 – Nov 2019</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="role">Application Developer</div>
+              <div class="company">Newgen Software Technologies — Bangalore, India</div>
+              <div class="duration">Mar 2017 – May 2018</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <!-- Contact -->
-    <h2 class="section-title">Contact</h2>
-    <div class="cardx contact-card">
-      <div class="contact-grid">
-        <div><i class="fa-solid fa-envelope me-2"></i> <a class="text-white" href="mailto:akhilpurella18@gmail.com">akhilpurella18@gmail.com</a></div>
-        <div><i class="fa-solid fa-phone me-2"></i> <a class="text-white" href="tel:+13143999759">+1 (314) 399-9759</a></div>
-        <div><i class="fab fa-github me-2"></i> <a class="text-white" href="https://github.com/Akhilpurella" target="_blank" rel="noopener">github.com/Akhilpurella</a></div>
-        <div><i class="fab fa-linkedin me-2"></i> <a class="text-white" href="https://linkedin.com/in/akhil-purella-662b57150" target="_blank" rel="noopener">linkedin.com/in/akhil-purella-662b57150</a></div>
-        <div><i class="fab fa-medium me-2"></i> <a class="text-white" href="https://medium.com/@AkhilPurella" target="_blank" rel="noopener">medium.com/@AkhilPurella</a></div>
+  <!-- ===== EDUCATION BAND ===== -->
+  <section class="band accent">
+    <div class="container">
+      <h2 class="section-title">Education</h2>
+      <div class="cardx education">
+        <div class="education-card">
+          <div class="education-title"><b>Master of Science: Computer Science</b></div>
+          <div class="education-institution" style="color:#a7d9ff;margin:4px 0">Saint Louis University</div>
+          <div class="education-duration">May 2025</div>
+        </div>
       </div>
     </div>
+  </section>
 
-    <!-- Footer -->
-    <div class="footer">
-      <p>© <span id="year"></span> Akhil Purella. All rights reserved.</p>
+  <!-- ===== CONTACT BAND ===== -->
+  <section class="band">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <div class="cardx contact-card">
+        <div class="contact-grid">
+          <div><i class="fa-solid fa-envelope me-2"></i> <a class="text-white" href="mailto:akhilpurella18@gmail.com">akhilpurella18@gmail.com</a></div>
+          <div><i class="fa-solid fa-phone me-2"></i> <a class="text-white" href="tel:+13143999759">+1 (314) 399-9759</a></div>
+          <div><i class="fab fa-github me-2"></i> <a class="text-white" href="https://github.com/Akhilpurella" target="_blank" rel="noopener">github.com/Akhilpurella</a></div>
+          <div><i class="fab fa-linkedin me-2"></i> <a class="text-white" href="https://linkedin.com/in/akhil-purella-662b57150" target="_blank" rel="noopener">linkedin.com/in/akhil-purella-662b57150</a></div>
+          <div><i class="fab fa-medium me-2"></i> <a class="text-white" href="https://medium.com/@AkhilPurella" target="_blank" rel="noopener">medium.com/@AkhilPurella</a></div>
+        </div>
+      </div>
+      <div class="footer">
+        <p class="mb-0">© <span id="year"></span> Akhil Purella. All rights reserved.</p>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <!-- Particles.js -->
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script>
-    // Year
-    document.getElementById('year').textContent = new Date().getFullYear();
+<script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Particles
-    particlesJS('particles-js',{
-      particles:{number:{value:70,density:{enable:true,value_area:800}},color:{value:"#ffffff"},
-        shape:{type:"circle"},opacity:{value:0.45,random:true},size:{value:2.8,random:true},
-        line_linked:{enable:true,distance:150,color:"#ffffff",opacity:0.35,width:1},
-        move:{enable:true,speed:1.8,random:true,out_mode:"out"}},
-      interactivity:{events:{onhover:{enable:true,mode:"repulse"},onclick:{enable:true,mode:"push"}}},
-      retina_detect:true});
+  // Particles
+  particlesJS('particles-js',{
+    particles:{number:{value:70,density:{enable:true,value_area:800}},color:{value:"#ffffff"},
+      shape:{type:"circle"},opacity:{value:0.45,random:true},size:{value:2.8,random:true},
+      line_linked:{enable:true,distance:150,color:"#ffffff",opacity:0.35,width:1},
+      move:{enable:true,speed:1.8,random:true,out_mode:"out"}},
+    interactivity:{events:{onhover:{enable:true,mode:"repulse"},onclick:{enable:true,mode:"push"}}},
+    retina_detect:true
+  });
 
-    // Skills toggle
-    const toggle = document.getElementById('toggleSkills');
-    const more = document.getElementById('moreSkills');
-    toggle.addEventListener('click', () => {
-      const open = more.classList.toggle('hidden') === false; // becomes visible
-      toggle.textContent = open ? 'Hide extra skills' : 'Show more skills';
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-  </script>
+  // Scroll reveal for cards
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} });
+  }, {threshold:.12});
+  document.querySelectorAll('.cardx').forEach(el=>io.observe(el));
+
+  // Skills toggle
+  const toggle = document.getElementById('toggleSkills');
+  const more = document.getElementById('moreSkills');
+  toggle.addEventListener('click', () => {
+    const nowOpen = more.classList.toggle('hidden') === false;
+    toggle.textContent = nowOpen ? 'Hide extra skills' : 'Show more skills';
+    toggle.setAttribute('aria-expanded', nowOpen ? 'true' : 'false');
+  });
+
+  // Scroll progress bar
+  const bar = document.getElementById('progress');
+  const onScroll = () => {
+    const sh = document.documentElement.scrollHeight - window.innerHeight;
+    const sc = window.scrollY;
+    const pct = Math.max(0, Math.min(1, sc / sh));
+    bar.style.width = (pct * 100) + '%';
+  };
+  onScroll(); window.addEventListener('scroll', onScroll);
+</script>
 </body>
 </html>
