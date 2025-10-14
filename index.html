@@ -16,13 +16,13 @@
     --primary:#6c63ff; --secondary:#4cc9f0; --accent:#c084fc;
     --chip-bg:rgba(255,255,255,.10); --chip-brd:rgba(255,255,255,.22);
 
-    /* band colors */
-    --band-hero:linear-gradient(180deg, #0f132b, #111539);
-    --band-about:linear-gradient(180deg, #0d2235, #0f2a48);
-    --band-skills:linear-gradient(180deg, #220f35, #2d1445);
-    --band-xp:linear-gradient(180deg, #081b2a, #0a2438);
-    --band-edu:linear-gradient(180deg, #1a1737, #1e1c44);
-    --band-ct:linear-gradient(180deg, #071c1f, #0a262a);
+    /* band colors — semi-transparent so particles show through */
+    --band-hero:linear-gradient(180deg, rgba(15,19,43,.78), rgba(17,21,57,.58));
+    --band-about:linear-gradient(180deg, rgba(13,34,53,.70), rgba(15,42,72,.54));
+    --band-skills:linear-gradient(180deg, rgba(34,15,53,.70), rgba(45,20,69,.54));
+    --band-xp:linear-gradient(180deg, rgba(8,27,42,.70), rgba(10,36,56,.54));
+    --band-edu:linear-gradient(180deg, rgba(26,23,55,.72), rgba(30,28,68,.56));
+    --band-ct:linear-gradient(180deg, rgba(7,28,31,.72), rgba(10,38,42,.56));
   }
 
   *{box-sizing:border-box}
@@ -32,36 +32,27 @@
     overflow-x:hidden;
   }
 
-  /* top particles + pattern so background never feels empty */
-  #particles-js{position:fixed;inset:0;z-index:-3;opacity:.5}
+  /* particles + pattern so background never feels empty */
+  #particles-js{position:fixed;inset:0;z-index:-3;opacity:.55}
   .pattern{
-    position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.16;
+    position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.10;
     background-image: radial-gradient(rgba(255,255,255,.18) 1px, transparent 1px);
     background-size: 18px 18px;
   }
+
+  /* top scroll progress bar */
   .progressbar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--secondary),var(--primary));width:0;z-index:1000}
 
   .container{max-width:1100px;margin:0 auto;padding:0 18px}
 
-  /* ===== bands (each section full-width with its own color) ===== */
+  /* ===== bands (each section = full-width color) ===== */
   .band{padding:42px 0; position:relative}
-  .band.hero{background:var(--band-hero)}
-  .band.about{background:var(--band-about)}
-  .band.skills{background:var(--band-skills)}
-  .band.xp{background:var(--band-xp)}
-  .band.edu{background:var(--band-edu)}
-  .band.ct{background:var(--band-ct)}
-
-  /* optional separators (curves / waves / diagonals) */
-  .band.diagonal:before{
-    content:""; position:absolute; left:0; right:0; top:-60px; height:60px;
-    background:inherit; transform:skewY(-3deg); transform-origin:100% 0;
-  }
-  .wave-top{
-    position:absolute;top:-1px;left:0;right:0;height:40px;background:
-      radial-gradient(1200px 40px at 50% 100%, rgba(255,255,255,.12), transparent 70%);
-    opacity:.25;
-  }
+  .hero{background:var(--band-hero)}
+  .about{background:var(--band-about)}
+  .skills{background:var(--band-skills)}
+  .xp{background:var(--band-xp)}
+  .edu{background:var(--band-edu)}
+  .ct{background:var(--band-ct)}
 
   /* ===== HERO (photo left, bio right) ===== */
   .hero-grid{display:grid; grid-template-columns:320px 1fr; gap:26px; align-items:center}
@@ -73,6 +64,7 @@
   .profile-img{
     width:280px; height:280px; border-radius:50%; object-fit:cover;
     border:6px solid var(--line); box-shadow:0 18px 46px rgba(0,0,0,.38); background:#0b1226;
+    animation:float1 9s ease-in-out infinite;
   }
   .name{
     font-size:3rem; font-weight:700; margin:0 0 6px;
@@ -99,33 +91,33 @@
     width:120px;height:3px;border-radius:10px;background:linear-gradient(90deg,var(--secondary),var(--primary))
   }
 
-  /* ===== Shape library ===== */
-  .shape-pill{border-radius:999px}
-  .shape-notched{
-    clip-path: polygon(0 12px, 12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px),
-                       calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px));
-  }
-  .shape-blob{
-    border-radius:40% 50% 42% 58% / 40% 38% 62% 60% ;
-  }
-  .shape-soft{border-radius:16px}
-
+  /* ===== Glass cards + reveal + “dance” ===== */
   .glass{
-    background:linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.08));
-    border:1px solid var(--line); box-shadow:0 12px 34px rgba(0,0,0,.28);
+    background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
+    border:1px solid var(--line);
+    box-shadow:0 12px 34px rgba(0,0,0,.28);
+    backdrop-filter: blur(6px);
   }
-
-  /* ===== Cards (with reveal) ===== */
   .cardx{padding:18px; transform:translateY(14px) scale(.98); opacity:0}
   .cardx.show{transform:none;opacity:1;transition:.65s cubic-bezier(.22,.65,.18,1)}
+  /* subtle “dancing” wiggle */
+  .dance{animation:dance 8s ease-in-out infinite}
+  .dance2{animation:dance 8s ease-in-out 1.2s infinite}
+  .dance3{animation:dance 8s ease-in-out 2.1s infinite}
+  @keyframes dance{
+    0%,100%{ transform:translateY(0) }
+    50%{ transform:translateY(-6px) }
+  }
+  @keyframes float1{
+    0%,100%{ transform:translateY(0) }
+    50%{ transform:translateY(-10px) }
+  }
 
-  /* ===== About ===== */
-  .about-card{max-width:900px;margin:0 auto; background:
-    radial-gradient(120% 140% at -10% -20%, rgba(108,99,255,.25), transparent 60%),
-    radial-gradient(120% 120% at 110% 20%, rgba(76,201,240,.18), transparent 60%);}
+  /* ===== About (pill) ===== */
+  .about-card{max-width:900px;margin:0 auto;border-radius:999px}
 
-  /* ===== Skills (compact + toggle) ===== */
-  .skills-wrap{max-width:900px;margin:0 auto}
+  /* ===== Skills (compact + toggle; notched) ===== */
+  .skills-wrap{max-width:900px;margin:0 auto;border-radius:18px; clip-path: polygon(0 12px, 12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px));}
   .skills-rows{display:grid;gap:8px}
   .row-collapse{display:flex;flex-wrap:wrap;gap:8px}
   .hidden{display:none}
@@ -135,37 +127,52 @@
   }
   .toggle-btn:hover{background:linear-gradient(90deg,rgba(108,99,255,.25),rgba(76,201,240,.18))}
 
-  /* ===== Experience timeline (inside diagonal band) ===== */
-  .timeline{position:relative;max-width:900px;margin:0 auto;padding:8px 0}
-  .timeline::before{content:'';position:absolute;left:50%;transform:translateX(-50%);width:3px;height:100%;background:linear-gradient(var(--secondary),var(--primary))}
-  .timeline-item{width:50%;padding:12px 22px;position:relative}
-  .timeline-item:nth-child(odd){left:0}
-  .timeline-item:nth-child(even){left:50%}
-  .timeline-content{padding:14px}
-  .timeline-dot{width:14px;height:14px;background:linear-gradient(135deg,var(--secondary),var(--primary));border-radius:50%;position:absolute;top:18px;z-index:1;box-shadow:0 0 0 8px rgba(108,99,255,.18)}
-  .timeline-item:nth-child(odd) .timeline-dot{right:-7px}
-  .timeline-item:nth-child(even) .timeline-dot{left:-7px}
-  .role{font-size:1rem;font-weight:600;margin-bottom:3px}
-  .company{font-size:.93rem;color:#a7d9ff;margin-bottom:2px}
-  .duration{font-size:.9rem;color:#dfe6ff}
-  @media (max-width: 992px){
-    .timeline::before{left:26px;transform:none}
-    .timeline-item{width:100%;left:0!important;padding-left:58px}
-    .timeline-dot{left:18px}
+  /* ===== Experience LADDER ===== */
+  .ladder-wrap{position:relative; max-width:1000px; margin:0 auto}
+  /* diagonal “rails” */
+  .ladder-wrap::before,
+  .ladder-wrap::after{
+    content:""; position:absolute; left:2%; right:2%; top:36px; height:2px;
+    background:linear-gradient(90deg, rgba(125,211,252,.6), rgba(108,99,255,.6));
+    transform:skewY(-6deg);
+    opacity:.35; filter:blur(.2px);
+  }
+  .ladder-wrap::after{ top:auto; bottom:36px; transform:skewY(6deg) }
+
+  .ladder{
+    position:relative;
+    display:grid; gap:16px;
+    grid-template-columns: repeat(5, minmax(170px, 1fr));
+    align-items:end;
+    padding:28px 8px 8px;
+  }
+  @media (max-width: 1100px){
+    .ladder{grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))}
+  }
+
+  .rung{
+    position:relative;
+    /* Step height: higher index sits higher -> “climb” left → right */
+    margin-top: calc((4 - var(--i)) * 18px);
+    border-radius:16px;
+  }
+  .rung .role{font-weight:700;font-size:1rem;margin-bottom:4px}
+  .rung .company{font-size:.93rem;color:#a7d9ff;margin-bottom:2px}
+  .rung .duration{font-size:.9rem;color:#dfe6ff}
+
+  /* connector dot on each rung */
+  .rung::before{
+    content:""; position:absolute; left:12px; top:-10px; width:14px; height:14px; border-radius:50%;
+    background:linear-gradient(135deg,var(--secondary),var(--primary));
+    box-shadow:0 0 0 8px rgba(108,99,255,.18);
   }
 
   /* ===== Education blob ===== */
   .edu-card{
-    max-width:900px;margin:0 auto; padding:22px;
-    background:
-      radial-gradient(80% 100% at 20% 10%, rgba(192,132,252,.24), transparent 60%),
-      radial-gradient(120% 120% at 110% 30%, rgba(108,99,255,.22), transparent 60%);
+    max-width:900px;margin:0 auto; padding:22px; border-radius:40% 50% 42% 58% / 40% 38% 62% 60%;
   }
 
-  /* ===== Contact wave ===== */
-  .ct .wave-top{opacity:.35}
-
-  /* Footer */
+  /* ===== Contact ===== */
   .footer{text-align:center;padding:20px 0;color:#c7d1f2}
 </style>
 </head>
@@ -202,11 +209,11 @@
     </div>
   </section>
 
-  <!-- ================= ABOUT (PILL) ================= -->
+  <!-- ================= ABOUT (PILL + dance) ================= -->
   <section class="band about">
     <div class="container">
       <h2 class="section-title">About</h2>
-      <div class="cardx glass shape-pill about-card">
+      <div class="cardx glass about-card dance show">
         Java full-stack developer with 8+ years building scalable enterprise apps across healthcare, banking,
         retail, and workflow automation. I design resilient microservices, event streaming pipelines, and clean,
         data-driven UIs with a focus on reliability, security, and developer velocity.
@@ -214,17 +221,19 @@
     </div>
   </section>
 
-  <!-- ================= SKILLS (NOTCHED) ================= -->
+  <!-- ================= SKILLS (NOTCHED + dance) ================= -->
   <section class="band skills">
     <div class="container">
       <h2 class="section-title">Skills</h2>
-      <div class="cardx glass shape-notched skills-wrap">
+      <div class="cardx glass skills-wrap dance2 show">
         <div class="skills-rows">
+          <!-- concise row -->
           <div class="row-collapse">
             <span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">React</span>
             <span class="chip">Angular</span><span class="chip">REST APIs</span><span class="chip">Kafka</span>
             <span class="chip">AWS</span><span class="chip">PostgreSQL</span>
           </div>
+          <!-- hidden extras -->
           <div id="moreSkills" class="hidden">
             <div class="row-collapse" style="margin-top:6px">
               <span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">HTML5</span><span class="chip">CSS3</span>
@@ -241,63 +250,57 @@
     </div>
   </section>
 
-  <!-- ================= EXPERIENCE (DIAGONAL BAND) ================= -->
-  <section class="band xp diagonal">
-    <span class="wave-top"></span>
+  <!-- ================= EXPERIENCE (LADDER + dance) ================= -->
+  <section class="band xp">
     <div class="container">
       <h2 class="section-title">Work Experience</h2>
-      <div class="cardx glass shape-soft" style="padding:0">
-        <div class="timeline" style="padding:14px 0">
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <div class="role">Full Stack Developer</div>
-              <div class="company">Infinite Computer Solutions — Atlanta, GA</div>
-              <div class="duration">Mar 2023 – Present</div>
-            </div>
+
+      <div class="cardx glass ladder-wrap dance3 show">
+        <div class="ladder">
+          <!-- Rung 1 -->
+          <div class="rung glass" style="--i:0">
+            <div class="role">Full Stack Developer</div>
+            <div class="company">Infinite Computer Solutions — Atlanta, GA</div>
+            <div class="duration">Mar 2023 – Present</div>
           </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <div class="role">Full Stack Developer</div>
-              <div class="company">Cardinal Health — Columbus, OH</div>
-              <div class="duration">Mar 2022 – Feb 2023</div>
-            </div>
+          <!-- Rung 2 -->
+          <div class="rung glass" style="--i:1">
+            <div class="role">Full Stack Developer</div>
+            <div class="company">Cardinal Health — Columbus, OH</div>
+            <div class="duration">Mar 2022 – Feb 2023</div>
           </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <div class="role">Backend & API Developer</div>
-              <div class="company">WSFS Bank — Wilmington, DE</div>
-              <div class="duration">Dec 2019 – Mar 2022</div>
-            </div>
+          <!-- Rung 3 -->
+          <div class="rung glass" style="--i:2">
+            <div class="role">Backend & API Developer</div>
+            <div class="company">WSFS Bank — Wilmington, DE</div>
+            <div class="duration">Dec 2019 – Mar 2022</div>
           </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <div class="role">Software Developer</div>
-              <div class="company">TJX Companies — Framingham, MA</div>
-              <div class="duration">Jun 2018 – Nov 2019</div>
-            </div>
+          <!-- Rung 4 -->
+          <div class="rung glass" style="--i:3">
+            <div class="role">Software Developer</div>
+            <div class="company">TJX Companies — Framingham, MA</div>
+            <div class="duration">Jun 2018 – Nov 2019</div>
           </div>
-          <div class="timeline-item">
-            <div class="timeline-dot"></div>
-            <div class="timeline-content">
-              <div class="role">Application Developer</div>
-              <div class="company">Newgen Software Technologies — Bangalore, India</div>
-              <div class="duration">Mar 2017 – May 2018</div>
-            </div>
+          <!-- Rung 5 -->
+          <div class="rung glass" style="--i:4">
+            <div class="role">Application Developer</div>
+            <div class="company">Newgen Software Technologies — Bangalore, India</div>
+            <div class="duration">Mar 2017 – May 2018</div>
           </div>
         </div>
       </div>
+
+      <p class="text-center mt-2" style="color:#a7d9ff;opacity:.85;font-size:.95rem">
+        (Climbed every step — newest on the left, earliest on the right)
+      </p>
     </div>
   </section>
 
-  <!-- ================= EDUCATION (BLOB) ================= -->
+  <!-- ================= EDUCATION (BLOB + dance) ================= -->
   <section class="band edu">
     <div class="container">
       <h2 class="section-title">Education</h2>
-      <div class="cardx glass shape-blob edu-card">
+      <div class="cardx glass edu-card dance show">
         <div class="education-title"><b>Master of Science: Computer Science</b></div>
         <div class="education-institution" style="color:#a7d9ff;margin:4px 0">Saint Louis University</div>
         <div class="education-duration">May 2025</div>
@@ -305,12 +308,11 @@
     </div>
   </section>
 
-  <!-- ================= CONTACT (WAVE) ================= -->
+  <!-- ================= CONTACT (dance) ================= -->
   <section class="band ct">
-    <span class="wave-top"></span>
     <div class="container">
       <h2 class="section-title">Contact</h2>
-      <div class="cardx glass shape-soft contact-card">
+      <div class="cardx glass dance2 show">
         <div class="row g-3">
           <div class="col-md-6"><i class="fa-solid fa-envelope me-2"></i> <a class="text-white" href="mailto:akhilpurella18@gmail.com">akhilpurella18@gmail.com</a></div>
           <div class="col-md-6"><i class="fa-solid fa-phone me-2"></i> <a class="text-white" href="tel:+13143999759">+1 (314) 399-9759</a></div>
@@ -320,9 +322,7 @@
         </div>
       </div>
 
-      <div class="footer">
-        © <span id="year"></span> Akhil Purella. All rights reserved.
-      </div>
+      <div class="footer">© <span id="year"></span> Akhil Purella. All rights reserved.</div>
     </div>
   </section>
 
@@ -341,7 +341,7 @@
     retina_detect:true
   });
 
-  // Reveal
+  // Scroll reveal for cardx
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} });
   }, {threshold:.12});
@@ -356,7 +356,7 @@
     toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
 
-  // Scroll progress
+  // Scroll progress bar
   const bar = document.getElementById('progress');
   const onScroll = () => {
     const h = document.documentElement.scrollHeight - innerHeight;
