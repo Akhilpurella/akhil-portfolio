@@ -20,12 +20,12 @@
             --glow: 0 0 20px rgba(124, 92, 255, 0.3);
 
             /* Colorful gradients */
-            --band-hero: linear-gradient(135deg, #1a1f4b 0%, #2d1b69 50%, #162b5e 100%);
-            --band-about: linear-gradient(135deg, #0f4c75 0%, #1b5e8a 50%, #3282b8 100%);
-            --band-skills: linear-gradient(135deg, #4a1c6b 0%, #6a1b9a 50%, #8e24aa 100%);
-            --band-xp: linear-gradient(135deg, #00695c 0%, #00897b 50%, #26a69a 100%);
-            --band-edu: linear-gradient(135deg, #5d4037 0%, #8d6e63 50%, #a1887f 100%);
-            --band-ct: linear-gradient(135deg, #004d40 0%, #00796b 50%, #009688 100%);
+            --band-hero: linear-gradient(135deg, rgba(26, 31, 75, 0.85) 0%, rgba(45, 27, 105, 0.75) 50%, rgba(22, 43, 94, 0.7) 100%);
+            --band-about: linear-gradient(135deg, rgba(15, 76, 117, 0.85) 0%, rgba(27, 94, 138, 0.75) 50%, rgba(50, 130, 184, 0.7) 100%);
+            --band-skills: linear-gradient(135deg, rgba(74, 28, 107, 0.85) 0%, rgba(106, 27, 154, 0.75) 50%, rgba(142, 36, 170, 0.7) 100%);
+            --band-xp: linear-gradient(135deg, rgba(0, 105, 92, 0.85) 0%, rgba(0, 137, 123, 0.75) 50%, rgba(38, 166, 154, 0.7) 100%);
+            --band-edu: linear-gradient(135deg, rgba(93, 64, 55, 0.85) 0%, rgba(141, 110, 99, 0.75) 50%, rgba(161, 136, 127, 0.7) 100%);
+            --band-ct: linear-gradient(135deg, rgba(0, 77, 64, 0.85) 0%, rgba(0, 121, 107, 0.75) 50%, rgba(0, 150, 136, 0.7) 100%);
         }
 
         * {
@@ -42,13 +42,139 @@
             scroll-behavior: smooth;
         }
 
+        /* Animated Background Elements */
+        .background-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -5;
+            overflow: hidden;
+        }
+
+        /* Floating Shapes */
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .shape {
+            position: absolute;
+            opacity: 0.1;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #ff6b6b, #ffa726, #66bb6a, #42a5f5, #ab47bc);
+            animation: float 25s infinite linear;
+        }
+
+        .shape:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-duration: 30s;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 70%;
+            left: 80%;
+            animation-duration: 40s;
+            animation-delay: 5s;
+        }
+
+        .shape:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 40%;
+            left: 20%;
+            animation-duration: 35s;
+            animation-delay: 10s;
+        }
+
+        .shape:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            top: 20%;
+            left: 70%;
+            animation-duration: 45s;
+            animation-delay: 15s;
+        }
+
+        .shape:nth-child(5) {
+            width: 90px;
+            height: 90px;
+            top: 80%;
+            left: 30%;
+            animation-duration: 50s;
+            animation-delay: 20s;
+        }
+
+        /* Animated Grid */
+        .animated-grid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        /* Moving Gradient Orbs */
+        .gradient-orbs {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            filter: blur(40px);
+            opacity: 0.4;
+        }
+
+        .orb {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 107, 107, 0.8) 0%, transparent 70%);
+            animation: orbMove 15s infinite alternate ease-in-out;
+        }
+
+        .orb:nth-child(1) {
+            width: 300px;
+            height: 300px;
+            top: -100px;
+            left: -100px;
+            animation-duration: 20s;
+        }
+
+        .orb:nth-child(2) {
+            width: 400px;
+            height: 400px;
+            bottom: -150px;
+            right: -150px;
+            background: radial-gradient(circle, rgba(66, 165, 245, 0.8) 0%, transparent 70%);
+            animation-duration: 25s;
+            animation-delay: 5s;
+        }
+
+        .orb:nth-child(3) {
+            width: 250px;
+            height: 250px;
+            top: 50%;
+            left: 80%;
+            background: radial-gradient(circle, rgba(102, 187, 106, 0.8) 0%, transparent 70%);
+            animation-duration: 18s;
+            animation-delay: 10s;
+        }
+
         /* Particles Background */
         #particles-js {
             position: fixed;
             inset: 0;
             z-index: -3;
             opacity: 0.8;
-            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
         }
 
         .pattern {
@@ -325,6 +451,46 @@
             }
         }
 
+        /* Background Animations */
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(10vw, 10vh) rotate(90deg);
+            }
+            50% {
+                transform: translate(20vw, 5vh) rotate(180deg);
+            }
+            75% {
+                transform: translate(5vw, 15vh) rotate(270deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+
+        @keyframes gridMove {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(50px, 50px);
+            }
+        }
+
+        @keyframes orbMove {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(10vw, 10vh) scale(1.2);
+            }
+            100% {
+                transform: translate(20vw, 5vh) scale(1);
+            }
+        }
+
         /* About Section */
         .about-card {
             max-width: 900px;
@@ -497,7 +663,7 @@
             width: 0;
             height: 0;
             border-top: 15px solid transparent;
-            border-bottom: 15px solid transparent;
+            border-bottom: 15px transparent;
             border-right: 15px solid rgba(255, 255, 255, 0.2);
         }
 
@@ -683,6 +849,23 @@
     </style>
 </head>
 <body>
+    <!-- Animated Background Elements -->
+    <div class="background-container">
+        <div class="floating-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        <div class="animated-grid"></div>
+        <div class="gradient-orbs">
+            <div class="orb"></div>
+            <div class="orb"></div>
+            <div class="orb"></div>
+        </div>
+    </div>
+
     <div id="particles-js"></div>
     <div class="pattern"></div>
     <div class="progressbar" id="progress"></div>
@@ -817,169 +1000,4 @@
                     <div class="timeline-dot"></div>
                     <div class="timeline-content glass">
                         <div class="role">Backend & API Developer</div>
-                        <div class="company">WSFS Bank — Wilmington, DE</div>
-                        <div class="duration">Dec 2019 – Mar 2022</div>
-                    </div>
-                </div>
-
-                <div class="timeline-item show">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content glass">
-                        <div class="role">Software Developer</div>
-                        <div class="company">TJX Companies — Framingham, MA</div>
-                        <div class="duration">Jun 2018 – Nov 2019</div>
-                    </div>
-                </div>
-
-                <div class="timeline-item show">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content glass">
-                        <div class="role">Application Developer</div>
-                        <div class="company">Newgen Software Technologies — Bangalore, India</div>
-                        <div class="duration">Mar 2017 – May 2018</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- EDUCATION -->
-    <section class="band edu">
-        <div class="container">
-            <h2 class="section-title">Education</h2>
-            <div class="cardx glass edu-card dance show">
-                <div class="education-title"><b>Master of Science: Computer Science</b></div>
-                <div class="education-institution">Saint Louis University</div>
-                <div class="education-duration">May 2025</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="band ct" id="contact">
-        <div class="container">
-            <h2 class="section-title">Contact</h2>
-            <div class="cardx glass dance2 show">
-                <div class="contact-grid">
-                    <div class="contact-item glass">
-                        <i class="fa-solid fa-envelope"></i>
-                        <div>
-                            <div style="font-weight: 500;">Email</div>
-                            <a href="mailto:akhilpurella18@gmail.com">akhilpurella18@gmail.com</a>
-                        </div>
-                    </div>
-                    <div class="contact-item glass">
-                        <i class="fa-solid fa-phone"></i>
-                        <div>
-                            <div style="font-weight: 500;">Phone</div>
-                            <a href="tel:+13143999759">+1 (314) 399-9759</a>
-                        </div>
-                    </div>
-                    <div class="contact-item glass">
-                        <i class="fab fa-github"></i>
-                        <div>
-                            <div style="font-weight: 500;">GitHub</div>
-                            <a href="https://github.com/Akhilpurella" target="_blank" rel="noopener">Akhilpurella</a>
-                        </div>
-                    </div>
-                    <div class="contact-item glass">
-                        <i class="fab fa-linkedin"></i>
-                        <div>
-                            <div style="font-weight: 500;">LinkedIn</div>
-                            <a href="https://linkedin.com/in/akhil-purella-662b57150" target="_blank" rel="noopener">akhil-purella</a>
-                        </div>
-                    </div>
-                    <div class="contact-item glass">
-                        <i class="fab fa-medium"></i>
-                        <div>
-                            <div style="font-weight: 500;">Medium</div>
-                            <a href="https://medium.com/@AkhilPurella" target="_blank" rel="noopener">@AkhilPurella</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="footer">© <span id="year"></span> Akhil Purella. All rights reserved.</div>
-        </div>
-    </section>
-
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script>
-        // Year
-        document.getElementById('year').textContent = new Date().getFullYear();
-
-        // Enhanced particles
-        particlesJS('particles-js', {
-            particles: {
-                number: { value: 90, density: { enable: true, value_area: 800 } },
-                color: { value: ["#ff6b6b", "#ffa726", "#66bb6a", "#42a5f5", "#ab47bc"] },
-                shape: { type: "circle" },
-                opacity: { value: 0.7, random: true },
-                size: { value: 3, random: true },
-                line_linked: { enable: true, distance: 150, color: "#a7c4ff", opacity: 0.4, width: 1.2 },
-                move: { enable: true, speed: 2.5, random: true, out_mode: "bounce" }
-            },
-            interactivity: {
-                events: {
-                    onhover: { enable: true, mode: "repulse" },
-                    onclick: { enable: true, mode: "push" }
-                }
-            },
-            retina_detect: true
-        });
-
-        // Enhanced reveal animation
-        const io = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    e.target.classList.add('show');
-                    io.unobserve(e.target);
-                }
-            });
-        }, { threshold: 0.10 });
-
-        document.querySelectorAll('.cardx, .timeline-item').forEach(el => io.observe(el));
-
-        // Skills toggle
-        const toggle = document.getElementById('toggleSkills');
-        const more = document.getElementById('moreSkills');
-        const toggleIcon = toggle.querySelector('i');
-
-        toggle.addEventListener('click', () => {
-            const open = more.classList.toggle('hidden') === false;
-            toggle.textContent = open ? ' Hide extra skills' : ' Show more skills';
-            toggle.insertAdjacentElement('afterbegin', toggleIcon);
-            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-
-            // Rotate icon
-            toggleIcon.style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)';
-        });
-
-        // Scroll progress bar
-        const bar = document.getElementById('progress');
-        const onScroll = () => {
-            const h = document.documentElement.scrollHeight - innerHeight;
-            bar.style.width = (Math.max(0, Math.min(1, scrollY / h)) * 100) + '%';
-        };
-        onScroll();
-        addEventListener('scroll', onScroll);
-
-        // Back to top button
-        const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTop.classList.add('visible');
-            } else {
-                backToTop.classList.remove('visible');
-            }
-        });
-
-        backToTop.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
-</body>
-</html>
+                        <div class="company">WS
