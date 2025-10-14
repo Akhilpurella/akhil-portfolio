@@ -1000,4 +1000,183 @@
                     <div class="timeline-dot"></div>
                     <div class="timeline-content glass">
                         <div class="role">Backend & API Developer</div>
-                        <div class="company">WS
+                        <div class="company">WSFS Bank — Wilmington, DE</div>
+                        <div class="duration">Dec 2019 – Mar 2022</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item show">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass">
+                        <div class="role">Software Developer</div>
+                        <div class="company">TJX Companies — Framingham, MA</div>
+                        <div class="duration">Jun 2018 – Nov 2019</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item show">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content glass">
+                        <div class="role">Application Developer</div>
+                        <div class="company">Newgen Software Technologies — Bangalore, India</div>
+                        <div class="duration">Mar 2017 – May 2018</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="band edu">
+        <div class="container">
+            <h2 class="section-title">Education</h2>
+            <div class="cardx glass edu-card dance show">
+                <div class="education-title"><b>Master of Science: Computer Science</b></div>
+                <div class="education-institution">Saint Louis University</div>
+                <div class="education-duration">May 2025</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="band ct" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact</h2>
+            <div class="cardx glass dance2 show">
+                <div class="contact-grid">
+                    <div class="contact-item glass">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div>
+                            <div style="font-weight: 500;">Email</div>
+                            <a href="mailto:akhilpurella18@gmail.com">akhilpurella18@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item glass">
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <div style="font-weight: 500;">Phone</div>
+                            <a href="tel:+13143999759">+1 (314) 399-9759</a>
+                        </div>
+                    </div>
+                    <div class="contact-item glass">
+                        <i class="fab fa-github"></i>
+                        <div>
+                            <div style="font-weight: 500;">GitHub</div>
+                            <a href="https://github.com/Akhilpurella" target="_blank" rel="noopener">Akhilpurella</a>
+                        </div>
+                    </div>
+                    <div class="contact-item glass">
+                        <i class="fab fa-linkedin"></i>
+                        <div>
+                            <div style="font-weight: 500;">LinkedIn</div>
+                            <a href="https://linkedin.com/in/akhil-purella-662b57150" target="_blank" rel="noopener">akhil-purella</a>
+                        </div>
+                    </div>
+                    <div class="contact-item glass">
+                        <i class="fab fa-medium"></i>
+                        <div>
+                            <div style="font-weight: 500;">Medium</div>
+                            <a href="https://medium.com/@AkhilPurella" target="_blank" rel="noopener">@AkhilPurella</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">© <span id="year"></span> Akhil Purella. All rights reserved.</div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Enhanced particles
+        particlesJS('particles-js', {
+            particles: {
+                number: { value: 120, density: { enable: true, value_area: 800 } },
+                color: { value: ["#ff6b6b", "#ffa726", "#66bb6a", "#42a5f5", "#ab47bc"] },
+                shape: { type: "circle" },
+                opacity: { value: 0.7, random: true },
+                size: { value: 3, random: true },
+                line_linked: { 
+                    enable: true, 
+                    distance: 150, 
+                    color: "#a7c4ff", 
+                    opacity: 0.4, 
+                    width: 1.2 
+                },
+                move: { 
+                    enable: true, 
+                    speed: 2.5, 
+                    random: true, 
+                    out_mode: "bounce",
+                    attract: { enable: true, rotateX: 600, rotateY: 1200 }
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: { enable: true, mode: "repulse" },
+                    onclick: { enable: true, mode: "push" },
+                    resize: true
+                }
+            },
+            retina_detect: true
+        });
+
+        // Enhanced reveal animation
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('show');
+                    io.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.10 });
+
+        document.querySelectorAll('.cardx, .timeline-item').forEach(el => io.observe(el));
+
+        // Skills toggle
+        const toggle = document.getElementById('toggleSkills');
+        const more = document.getElementById('moreSkills');
+        const toggleIcon = toggle.querySelector('i');
+
+        toggle.addEventListener('click', () => {
+            const open = more.classList.toggle('hidden') === false;
+            toggle.textContent = open ? ' Hide extra skills' : ' Show more skills';
+            toggle.insertAdjacentElement('afterbegin', toggleIcon);
+            toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+
+            // Rotate icon
+            toggleIcon.style.transform = open ? 'rotate(180deg)' : 'rotate(0deg)';
+        });
+
+        // Scroll progress bar
+        const bar = document.getElementById('progress');
+        const onScroll = () => {
+            const h = document.documentElement.scrollHeight - innerHeight;
+            bar.style.width = (Math.max(0, Math.min(1, scrollY / h)) * 100) + '%';
+        };
+        onScroll();
+        addEventListener('scroll', onScroll);
+
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
