@@ -12,51 +12,62 @@
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
   :root{
-    --bg1:#0f1028; --bg2:#1b1d3a; --bg3:#11122c;
+    --ink:#f8fbff; --muted:#b9c3e6; --line:rgba(255,255,255,.15);
     --primary:#6c63ff; --secondary:#4cc9f0; --accent:#c084fc;
-    --ink:#f8fbff; --muted:#b9c3e6; --line:rgba(255,255,255,.14);
     --chip-bg:rgba(255,255,255,.10); --chip-brd:rgba(255,255,255,.22);
-    --card:rgba(255,255,255,.10);
-    --band1:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
-    --band2:linear-gradient(180deg, rgba(108,99,255,.14), rgba(76,201,240,.10));
+
+    /* band colors */
+    --band-hero:linear-gradient(180deg, #0f132b, #111539);
+    --band-about:linear-gradient(180deg, #0d2235, #0f2a48);
+    --band-skills:linear-gradient(180deg, #220f35, #2d1445);
+    --band-xp:linear-gradient(180deg, #081b2a, #0a2438);
+    --band-edu:linear-gradient(180deg, #1a1737, #1e1c44);
+    --band-ct:linear-gradient(180deg, #071c1f, #0a262a);
   }
 
   *{box-sizing:border-box}
   body{
     margin:0; color:var(--ink); font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial;
-    background: linear-gradient(120deg,var(--bg1),var(--bg2),var(--bg3));
-    background-size: 400% 400%; animation:bgShift 18s ease-in-out infinite alternate;
+    background:#0e1026;
     overflow-x:hidden;
   }
-  @keyframes bgShift{ from{background-position:0% 50%} to{background-position:100% 50%} }
 
-  /* Top scroll progress bar */
-  .progressbar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--secondary),var(--primary));width:0;z-index:1000}
-
-  /* Particles layer */
-  #particles-js{position:fixed;inset:0;z-index:-2;opacity:.55}
-
-  /* Subtle dot-grid pattern overlay so background never looks empty */
+  /* top particles + pattern so background never feels empty */
+  #particles-js{position:fixed;inset:0;z-index:-3;opacity:.5}
   .pattern{
-    position:fixed; inset:0; z-index:-1; pointer-events:none; opacity:.22;
-    background-image: radial-gradient(rgba(255,255,255,.15) 1px, transparent 1px);
+    position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.16;
+    background-image: radial-gradient(rgba(255,255,255,.18) 1px, transparent 1px);
     background-size: 18px 18px;
   }
+  .progressbar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--secondary),var(--primary));width:0;z-index:1000}
 
   .container{max-width:1100px;margin:0 auto;padding:0 18px}
 
-  /* ==== Section bands (no blank space) ==== */
-  .band{padding:36px 0}
-  .band.alt{background:var(--band1); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
-  .band.accent{background:var(--band2); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+  /* ===== bands (each section full-width with its own color) ===== */
+  .band{padding:42px 0; position:relative}
+  .band.hero{background:var(--band-hero)}
+  .band.about{background:var(--band-about)}
+  .band.skills{background:var(--band-skills)}
+  .band.xp{background:var(--band-xp)}
+  .band.edu{background:var(--band-edu)}
+  .band.ct{background:var(--band-ct)}
 
-  /* ==== Header / Hero (photo left, bio right) ==== */
-  .hero-grid{
-    display:grid; grid-template-columns:320px 1fr; gap:26px; align-items:center;
+  /* optional separators (curves / waves / diagonals) */
+  .band.diagonal:before{
+    content:""; position:absolute; left:0; right:0; top:-60px; height:60px;
+    background:inherit; transform:skewY(-3deg); transform-origin:100% 0;
   }
+  .wave-top{
+    position:absolute;top:-1px;left:0;right:0;height:40px;background:
+      radial-gradient(1200px 40px at 50% 100%, rgba(255,255,255,.12), transparent 70%);
+    opacity:.25;
+  }
+
+  /* ===== HERO (photo left, bio right) ===== */
+  .hero-grid{display:grid; grid-template-columns:320px 1fr; gap:26px; align-items:center}
   @media (max-width: 900px){
     .hero-grid{grid-template-columns:1fr; text-align:center}
-    .bio .cta, .bio .social-links{justify-content:center}
+    .bio .chip-strip,.bio .social-links{justify-content:center}
   }
   .profile-wrap{display:flex; align-items:center; justify-content:center}
   .profile-img{
@@ -69,6 +80,7 @@
     -webkit-background-clip:text; -webkit-text-fill-color:transparent;
   }
   .title{font-size:1.15rem;margin:4px 0 12px;color:var(--muted)}
+
   .social-links{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0}
   .social-link{
     width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;
@@ -78,30 +90,42 @@
   .chip-strip{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
   .chip{padding:7px 10px;border-radius:999px;font-size:.9rem;background:var(--chip-bg);border:1px solid var(--chip-brd)}
 
-  /* Section Title */
+  /* ===== Shared title ===== */
   .section-title{
-    text-align:center;font-size:1.65rem;margin:0 0 16px;position:relative
+    text-align:center;font-size:1.65rem;margin:0 0 18px;position:relative
   }
   .section-title::after{
     content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);
     width:120px;height:3px;border-radius:10px;background:linear-gradient(90deg,var(--secondary),var(--primary))
   }
 
-  /* Cards */
-  .cardx{
-    background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.08));
-    border:1px solid var(--line); border-radius:14px; padding:18px;
-    box-shadow:0 10px 30px rgba(0,0,0,.25);
-    transform:translateY(14px) scale(.98); opacity:0;
+  /* ===== Shape library ===== */
+  .shape-pill{border-radius:999px}
+  .shape-notched{
+    clip-path: polygon(0 12px, 12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px),
+                       calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px));
   }
+  .shape-blob{
+    border-radius:40% 50% 42% 58% / 40% 38% 62% 60% ;
+  }
+  .shape-soft{border-radius:16px}
+
+  .glass{
+    background:linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.08));
+    border:1px solid var(--line); box-shadow:0 12px 34px rgba(0,0,0,.28);
+  }
+
+  /* ===== Cards (with reveal) ===== */
+  .cardx{padding:18px; transform:translateY(14px) scale(.98); opacity:0}
   .cardx.show{transform:none;opacity:1;transition:.65s cubic-bezier(.22,.65,.18,1)}
 
-  /* About */
-  .about-card{max-width:900px;margin:0 auto}
+  /* ===== About ===== */
+  .about-card{max-width:900px;margin:0 auto; background:
+    radial-gradient(120% 140% at -10% -20%, rgba(108,99,255,.25), transparent 60%),
+    radial-gradient(120% 120% at 110% 20%, rgba(76,201,240,.18), transparent 60%);}
 
-  /* Skills (compact w/toggle) */
+  /* ===== Skills (compact + toggle) ===== */
   .skills-wrap{max-width:900px;margin:0 auto}
-  .chips{display:flex;flex-wrap:wrap;gap:8px}
   .skills-rows{display:grid;gap:8px}
   .row-collapse{display:flex;flex-wrap:wrap;gap:8px}
   .hidden{display:none}
@@ -111,13 +135,13 @@
   }
   .toggle-btn:hover{background:linear-gradient(90deg,rgba(108,99,255,.25),rgba(76,201,240,.18))}
 
-  /* Timeline (Experience) */
-  .timeline{position:relative;max-width:900px;margin:0 auto;padding:6px 0}
+  /* ===== Experience timeline (inside diagonal band) ===== */
+  .timeline{position:relative;max-width:900px;margin:0 auto;padding:8px 0}
   .timeline::before{content:'';position:absolute;left:50%;transform:translateX(-50%);width:3px;height:100%;background:linear-gradient(var(--secondary),var(--primary))}
   .timeline-item{width:50%;padding:12px 22px;position:relative}
   .timeline-item:nth-child(odd){left:0}
   .timeline-item:nth-child(even){left:50%}
-  .timeline-content{background:var(--card);padding:14px;border-radius:12px;border:1px solid var(--line)}
+  .timeline-content{padding:14px}
   .timeline-dot{width:14px;height:14px;background:linear-gradient(135deg,var(--secondary),var(--primary));border-radius:50%;position:absolute;top:18px;z-index:1;box-shadow:0 0 0 8px rgba(108,99,255,.18)}
   .timeline-item:nth-child(odd) .timeline-dot{right:-7px}
   .timeline-item:nth-child(even) .timeline-dot{left:-7px}
@@ -130,27 +154,31 @@
     .timeline-dot{left:18px}
   }
 
-  /* Education & Contact */
-  .education, .contact-card{max-width:900px;margin:0 auto}
-  .education-card{text-align:center}
-  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  @media(max-width:768px){.contact-grid{grid-template-columns:1fr}}
+  /* ===== Education blob ===== */
+  .edu-card{
+    max-width:900px;margin:0 auto; padding:22px;
+    background:
+      radial-gradient(80% 100% at 20% 10%, rgba(192,132,252,.24), transparent 60%),
+      radial-gradient(120% 120% at 110% 30%, rgba(108,99,255,.22), transparent 60%);
+  }
+
+  /* ===== Contact wave ===== */
+  .ct .wave-top{opacity:.35}
 
   /* Footer */
-  .footer{text-align:center;padding:20px 0;color:#c7d1f2;border-top:1px solid var(--line)}
+  .footer{text-align:center;padding:20px 0;color:#c7d1f2}
 </style>
 </head>
 <body>
-  <div class="progressbar" id="progress"></div>
   <div id="particles-js"></div>
   <div class="pattern"></div>
+  <div class="progressbar" id="progress"></div>
 
-  <!-- ===== HERO BAND ===== -->
-  <section class="band alt">
+  <!-- ================= HERO ================= -->
+  <section class="band hero">
     <div class="container">
       <div class="hero-grid">
         <div class="profile-wrap">
-          <!-- Use your own image file named profile.jpg in the repo root -->
           <img src="profile.jpg" alt="Akhil Purella" class="profile-img">
         </div>
         <div class="bio">
@@ -174,33 +202,29 @@
     </div>
   </section>
 
-  <!-- ===== ABOUT BAND ===== -->
-  <section class="band">
+  <!-- ================= ABOUT (PILL) ================= -->
+  <section class="band about">
     <div class="container">
       <h2 class="section-title">About</h2>
-      <div class="cardx about-card">
-        <p class="mb-0">
-          Java full-stack developer with 8+ years building scalable enterprise apps across healthcare, banking,
-          retail, and workflow automation. I design resilient microservices, event streaming pipelines, and clean,
-          data-driven UIs with a focus on reliability, security, and developer velocity.
-        </p>
+      <div class="cardx glass shape-pill about-card">
+        Java full-stack developer with 8+ years building scalable enterprise apps across healthcare, banking,
+        retail, and workflow automation. I design resilient microservices, event streaming pipelines, and clean,
+        data-driven UIs with a focus on reliability, security, and developer velocity.
       </div>
     </div>
   </section>
 
-  <!-- ===== SKILLS BAND (compact) ===== -->
-  <section class="band accent">
+  <!-- ================= SKILLS (NOTCHED) ================= -->
+  <section class="band skills">
     <div class="container">
       <h2 class="section-title">Skills</h2>
-      <div class="cardx skills-wrap">
+      <div class="cardx glass shape-notched skills-wrap">
         <div class="skills-rows">
-          <!-- concise row -->
           <div class="row-collapse">
             <span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">React</span>
             <span class="chip">Angular</span><span class="chip">REST APIs</span><span class="chip">Kafka</span>
             <span class="chip">AWS</span><span class="chip">PostgreSQL</span>
           </div>
-          <!-- hidden extras -->
           <div id="moreSkills" class="hidden">
             <div class="row-collapse" style="margin-top:6px">
               <span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">HTML5</span><span class="chip">CSS3</span>
@@ -217,11 +241,12 @@
     </div>
   </section>
 
-  <!-- ===== EXPERIENCE BAND ===== -->
-  <section class="band">
+  <!-- ================= EXPERIENCE (DIAGONAL BAND) ================= -->
+  <section class="band xp diagonal">
+    <span class="wave-top"></span>
     <div class="container">
       <h2 class="section-title">Work Experience</h2>
-      <div class="cardx show" style="padding:0">
+      <div class="cardx glass shape-soft" style="padding:0">
         <div class="timeline" style="padding:14px 0">
           <div class="timeline-item">
             <div class="timeline-dot"></div>
@@ -268,35 +293,35 @@
     </div>
   </section>
 
-  <!-- ===== EDUCATION BAND ===== -->
-  <section class="band accent">
+  <!-- ================= EDUCATION (BLOB) ================= -->
+  <section class="band edu">
     <div class="container">
       <h2 class="section-title">Education</h2>
-      <div class="cardx education">
-        <div class="education-card">
-          <div class="education-title"><b>Master of Science: Computer Science</b></div>
-          <div class="education-institution" style="color:#a7d9ff;margin:4px 0">Saint Louis University</div>
-          <div class="education-duration">May 2025</div>
-        </div>
+      <div class="cardx glass shape-blob edu-card">
+        <div class="education-title"><b>Master of Science: Computer Science</b></div>
+        <div class="education-institution" style="color:#a7d9ff;margin:4px 0">Saint Louis University</div>
+        <div class="education-duration">May 2025</div>
       </div>
     </div>
   </section>
 
-  <!-- ===== CONTACT BAND ===== -->
-  <section class="band">
+  <!-- ================= CONTACT (WAVE) ================= -->
+  <section class="band ct">
+    <span class="wave-top"></span>
     <div class="container">
       <h2 class="section-title">Contact</h2>
-      <div class="cardx contact-card">
-        <div class="contact-grid">
-          <div><i class="fa-solid fa-envelope me-2"></i> <a class="text-white" href="mailto:akhilpurella18@gmail.com">akhilpurella18@gmail.com</a></div>
-          <div><i class="fa-solid fa-phone me-2"></i> <a class="text-white" href="tel:+13143999759">+1 (314) 399-9759</a></div>
-          <div><i class="fab fa-github me-2"></i> <a class="text-white" href="https://github.com/Akhilpurella" target="_blank" rel="noopener">github.com/Akhilpurella</a></div>
-          <div><i class="fab fa-linkedin me-2"></i> <a class="text-white" href="https://linkedin.com/in/akhil-purella-662b57150" target="_blank" rel="noopener">linkedin.com/in/akhil-purella-662b57150</a></div>
-          <div><i class="fab fa-medium me-2"></i> <a class="text-white" href="https://medium.com/@AkhilPurella" target="_blank" rel="noopener">medium.com/@AkhilPurella</a></div>
+      <div class="cardx glass shape-soft contact-card">
+        <div class="row g-3">
+          <div class="col-md-6"><i class="fa-solid fa-envelope me-2"></i> <a class="text-white" href="mailto:akhilpurella18@gmail.com">akhilpurella18@gmail.com</a></div>
+          <div class="col-md-6"><i class="fa-solid fa-phone me-2"></i> <a class="text-white" href="tel:+13143999759">+1 (314) 399-9759</a></div>
+          <div class="col-md-6"><i class="fab fa-github me-2"></i> <a class="text-white" href="https://github.com/Akhilpurella" target="_blank" rel="noopener">github.com/Akhilpurella</a></div>
+          <div class="col-md-6"><i class="fab fa-linkedin me-2"></i> <a class="text-white" href="https://linkedin.com/in/akhil-purella-662b57150" target="_blank" rel="noopener">linkedin.com/in/akhil-purella-662b57150</a></div>
+          <div class="col-md-6"><i class="fab fa-medium me-2"></i> <a class="text-white" href="https://medium.com/@AkhilPurella" target="_blank" rel="noopener">medium.com/@AkhilPurella</a></div>
         </div>
       </div>
+
       <div class="footer">
-        <p class="mb-0">© <span id="year"></span> Akhil Purella. All rights reserved.</p>
+        © <span id="year"></span> Akhil Purella. All rights reserved.
       </div>
     </div>
   </section>
@@ -316,7 +341,7 @@
     retina_detect:true
   });
 
-  // Scroll reveal for cards
+  // Reveal
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} });
   }, {threshold:.12});
@@ -326,20 +351,18 @@
   const toggle = document.getElementById('toggleSkills');
   const more = document.getElementById('moreSkills');
   toggle.addEventListener('click', () => {
-    const nowOpen = more.classList.toggle('hidden') === false;
-    toggle.textContent = nowOpen ? 'Hide extra skills' : 'Show more skills';
-    toggle.setAttribute('aria-expanded', nowOpen ? 'true' : 'false');
+    const open = more.classList.toggle('hidden') === false;
+    toggle.textContent = open ? 'Hide extra skills' : 'Show more skills';
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
 
-  // Scroll progress bar
+  // Scroll progress
   const bar = document.getElementById('progress');
   const onScroll = () => {
-    const sh = document.documentElement.scrollHeight - window.innerHeight;
-    const sc = window.scrollY;
-    const pct = Math.max(0, Math.min(1, sc / sh));
-    bar.style.width = (pct * 100) + '%';
+    const h = document.documentElement.scrollHeight - innerHeight;
+    bar.style.width = (Math.max(0, Math.min(1, scrollY / h)) * 100) + '%';
   };
-  onScroll(); window.addEventListener('scroll', onScroll);
+  onScroll(); addEventListener('scroll', onScroll);
 </script>
 </body>
 </html>
