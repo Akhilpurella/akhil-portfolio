@@ -7,45 +7,42 @@
 
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
   :root{
-    --ink:#f8fbff; --muted:#b9c3e6; --line:rgba(255,255,255,.15);
-    --primary:#6c63ff; --secondary:#4cc9f0; --accent:#c084fc;
+    --ink:#f8fbff; --muted:#b9c3e6; --line:rgba(255,255,255,.18);
+    --primary:#7c5cff; --secondary:#67e8f9; --accent:#c084fc;
     --chip-bg:rgba(255,255,255,.10); --chip-brd:rgba(255,255,255,.22);
 
-    /* band colors — semi-transparent so particles show through */
-    --band-hero:linear-gradient(180deg, rgba(15,19,43,.78), rgba(17,21,57,.58));
-    --band-about:linear-gradient(180deg, rgba(13,34,53,.70), rgba(15,42,72,.54));
-    --band-skills:linear-gradient(180deg, rgba(34,15,53,.70), rgba(45,20,69,.54));
-    --band-xp:linear-gradient(180deg, rgba(8,27,42,.70), rgba(10,36,56,.54));
-    --band-edu:linear-gradient(180deg, rgba(26,23,55,.72), rgba(30,28,68,.56));
-    --band-ct:linear-gradient(180deg, rgba(7,28,31,.72), rgba(10,38,42,.56));
+    /* semi-transparent bands so particles glow through */
+    --band-hero:linear-gradient(180deg, rgba(16,22,49,.78), rgba(18,22,64,.56));
+    --band-about:linear-gradient(180deg, rgba(10,40,62,.66), rgba(18,50,84,.48));
+    --band-skills:linear-gradient(180deg, rgba(38,16,62,.64), rgba(52,22,84,.46));
+    --band-xp:linear-gradient(180deg, rgba(8,27,42,.64), rgba(12,40,62,.46));
+    --band-edu:linear-gradient(180deg, rgba(28,24,58,.66), rgba(34,30,78,.48));
+    --band-ct:linear-gradient(180deg, rgba(7,28,33,.66), rgba(12,38,43,.48));
   }
 
   *{box-sizing:border-box}
   body{
-    margin:0; color:var(--ink); font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial;
-    background:#0e1026;
-    overflow-x:hidden;
+    margin:0; color:var(--ink);
+    font-family:'Outfit',system-ui,-apple-system,Segoe UI,Roboto,Arial;
+    background:#0e1026; overflow-x:hidden;
   }
 
-  /* particles + pattern so background never feels empty */
-  #particles-js{position:fixed;inset:0;z-index:-3;opacity:.55}
+  /* particles + a faint grid so background never feels empty */
+  #particles-js{position:fixed;inset:0;z-index:-3;opacity:.65}
   .pattern{
-    position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.10;
+    position:fixed;inset:0;z-index:-2;pointer-events:none;opacity:.12;
     background-image: radial-gradient(rgba(255,255,255,.18) 1px, transparent 1px);
     background-size: 18px 18px;
   }
-
-  /* top scroll progress bar */
   .progressbar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--secondary),var(--primary));width:0;z-index:1000}
 
   .container{max-width:1100px;margin:0 auto;padding:0 18px}
 
-  /* ===== bands (each section = full-width color) ===== */
+  /* section bands */
   .band{padding:42px 0; position:relative}
   .hero{background:var(--band-hero)}
   .about{background:var(--band-about)}
@@ -54,7 +51,7 @@
   .edu{background:var(--band-edu)}
   .ct{background:var(--band-ct)}
 
-  /* ===== HERO (photo left, bio right) ===== */
+  /* hero (photo left, bio right) */
   .hero-grid{display:grid; grid-template-columns:320px 1fr; gap:26px; align-items:center}
   @media (max-width: 900px){
     .hero-grid{grid-template-columns:1fr; text-align:center}
@@ -63,61 +60,51 @@
   .profile-wrap{display:flex; align-items:center; justify-content:center}
   .profile-img{
     width:280px; height:280px; border-radius:50%; object-fit:cover;
-    border:6px solid var(--line); box-shadow:0 18px 46px rgba(0,0,0,.38); background:#0b1226;
+    border:6px solid var(--line); box-shadow:0 18px 46px rgba(0,0,0,.38);
     animation:float1 9s ease-in-out infinite;
   }
   .name{
-    font-size:3rem; font-weight:700; margin:0 0 6px;
+    font-size:3.1rem; font-weight:800; margin:0 0 6px;
     background:linear-gradient(90deg,var(--secondary),var(--primary),var(--accent));
     -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    letter-spacing:.2px;
   }
   .title{font-size:1.15rem;margin:4px 0 12px;color:var(--muted)}
-
+  .chip-strip{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .chip{padding:7px 10px;border-radius:999px;font-size:.92rem;background:var(--chip-bg);border:1px solid var(--chip-brd)}
   .social-links{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0}
   .social-link{
-    width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+    width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;
     background:var(--chip-bg); border:1px solid var(--chip-brd); color:#fff;font-size:18px;transition:.2s
   }
-  .social-link:hover{transform:translateY(-3px);background:linear-gradient(135deg,rgba(108,99,255,.35),rgba(76,201,240,.25))}
-  .chip-strip{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-  .chip{padding:7px 10px;border-radius:999px;font-size:.9rem;background:var(--chip-bg);border:1px solid var(--chip-brd)}
+  .social-link:hover{transform:translateY(-3px);background:linear-gradient(135deg,rgba(124,92,255,.35),rgba(103,232,249,.25))}
 
-  /* ===== Shared title ===== */
+  /* section titles */
   .section-title{
-    text-align:center;font-size:1.65rem;margin:0 0 18px;position:relative
+    text-align:center;font-size:1.7rem;margin:0 0 18px;position:relative;font-weight:700;letter-spacing:.3px
   }
   .section-title::after{
     content:'';position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);
     width:120px;height:3px;border-radius:10px;background:linear-gradient(90deg,var(--secondary),var(--primary))
   }
 
-  /* ===== Glass cards + reveal + “dance” ===== */
+  /* glass cards + reveal + dance */
   .glass{
     background:linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
-    border:1px solid var(--line);
-    box-shadow:0 12px 34px rgba(0,0,0,.28);
-    backdrop-filter: blur(6px);
+    border:1px solid var(--line); box-shadow:0 12px 34px rgba(0,0,0,.28); backdrop-filter: blur(6px);
   }
   .cardx{padding:18px; transform:translateY(14px) scale(.98); opacity:0}
   .cardx.show{transform:none;opacity:1;transition:.65s cubic-bezier(.22,.65,.18,1)}
-  /* subtle “dancing” wiggle */
   .dance{animation:dance 8s ease-in-out infinite}
   .dance2{animation:dance 8s ease-in-out 1.2s infinite}
-  .dance3{animation:dance 8s ease-in-out 2.1s infinite}
-  @keyframes dance{
-    0%,100%{ transform:translateY(0) }
-    50%{ transform:translateY(-6px) }
-  }
-  @keyframes float1{
-    0%,100%{ transform:translateY(0) }
-    50%{ transform:translateY(-10px) }
-  }
+  @keyframes dance{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  @keyframes float1{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
 
-  /* ===== About (pill) ===== */
+  /* about pill */
   .about-card{max-width:900px;margin:0 auto;border-radius:999px}
 
-  /* ===== Skills (compact + toggle; notched) ===== */
-  .skills-wrap{max-width:900px;margin:0 auto;border-radius:18px; clip-path: polygon(0 12px, 12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px));}
+  /* skills notched */
+  .skills-wrap{max-width:900px;margin:0 auto;border-radius:18px;clip-path:polygon(0 12px,12px 0,calc(100% - 12px) 0,100% 12px,100% calc(100% - 12px),calc(100% - 12px) 100%,12px 100%,0 calc(100% - 12px));}
   .skills-rows{display:grid;gap:8px}
   .row-collapse{display:flex;flex-wrap:wrap;gap:8px}
   .hidden{display:none}
@@ -125,54 +112,52 @@
     margin-top:10px; display:inline-block; padding:7px 12px; border-radius:10px; cursor:pointer;
     border:1px solid var(--line); background:rgba(255,255,255,.08); color:#eaf2ff; font-size:.9rem;
   }
-  .toggle-btn:hover{background:linear-gradient(90deg,rgba(108,99,255,.25),rgba(76,201,240,.18))}
+  .toggle-btn:hover{background:linear-gradient(90deg,rgba(124,92,255,.25),rgba(103,232,249,.18))}
 
-  /* ===== Experience LADDER ===== */
-  .ladder-wrap{position:relative; max-width:1000px; margin:0 auto}
-  /* diagonal “rails” */
-  .ladder-wrap::before,
-  .ladder-wrap::after{
-    content:""; position:absolute; left:2%; right:2%; top:36px; height:2px;
-    background:linear-gradient(90deg, rgba(125,211,252,.6), rgba(108,99,255,.6));
-    transform:skewY(-6deg);
-    opacity:.35; filter:blur(.2px);
-  }
-  .ladder-wrap::after{ top:auto; bottom:36px; transform:skewY(6deg) }
-
-  .ladder{
+  /* ========== EXPERIENCE: DIAGONAL LADDER (vertical flow) ========== */
+  .ladder-diag{
     position:relative;
-    display:grid; gap:16px;
-    grid-template-columns: repeat(5, minmax(170px, 1fr));
-    align-items:end;
-    padding:28px 8px 8px;
+    height:520px; /* canvas height for steps */
+    max-width:1000px; margin:0 auto;
   }
-  @media (max-width: 1100px){
-    .ladder{grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))}
+  /* diagonal guide line */
+  .ladder-diag::before{
+    content:""; position:absolute; left:24px; top:24px; right:24px; bottom:24px;
+    border-left:2px dashed rgba(103,232,249,.35);
+    border-top:2px dashed rgba(124,92,255,.35);
+    transform:skewY(-8deg);
+    border-right:none; border-bottom:none;
+    pointer-events:none;
   }
+  .step{
+    position:absolute; width:260px; padding:14px; border-radius:16px;
+  }
+  /* position each step by index: top increases, left increases = diagonal down */
+  .step[data-i="0"]{ top:14px;  left:14px; }
+  .step[data-i="1"]{ top:110px; left:220px; }
+  .step[data-i="2"]{ top:206px; left:426px; }
+  .step[data-i="3"]{ top:302px; left:632px; }
+  .step[data-i="4"]{ top:398px; left:838px; }
 
-  .rung{
-    position:relative;
-    /* Step height: higher index sits higher -> “climb” left → right */
-    margin-top: calc((4 - var(--i)) * 18px);
-    border-radius:16px;
-  }
-  .rung .role{font-weight:700;font-size:1rem;margin-bottom:4px}
-  .rung .company{font-size:.93rem;color:#a7d9ff;margin-bottom:2px}
-  .rung .duration{font-size:.9rem;color:#dfe6ff}
-
-  /* connector dot on each rung */
-  .rung::before{
+  .step .role{font-weight:800;font-size:1rem;margin-bottom:4px}
+  .step .company{font-size:.93rem;color:#a7d9ff;margin-bottom:2px}
+  .step .duration{font-size:.9rem;color:#dfe6ff}
+  .step::before{
     content:""; position:absolute; left:12px; top:-10px; width:14px; height:14px; border-radius:50%;
     background:linear-gradient(135deg,var(--secondary),var(--primary));
-    box-shadow:0 0 0 8px rgba(108,99,255,.18);
+    box-shadow:0 0 0 8px rgba(124,92,255,.18);
   }
 
-  /* ===== Education blob ===== */
-  .edu-card{
-    max-width:900px;margin:0 auto; padding:22px; border-radius:40% 50% 42% 58% / 40% 38% 62% 60%;
+  /* responsive: stack nicely on small screens */
+  @media (max-width: 1100px){
+    .ladder-diag{height:auto}
+    .ladder-diag::before{display:none}
+    .step{position:static; width:auto; margin-bottom:12px}
   }
 
-  /* ===== Contact ===== */
+  /* education blob */
+  .edu-card{max-width:900px;margin:0 auto; padding:22px; border-radius:40% 50% 42% 58% / 40% 38% 62% 60%}
+
   .footer{text-align:center;padding:20px 0;color:#c7d1f2}
 </style>
 </head>
@@ -181,7 +166,7 @@
   <div class="pattern"></div>
   <div class="progressbar" id="progress"></div>
 
-  <!-- ================= HERO ================= -->
+  <!-- HERO -->
   <section class="band hero">
     <div class="container">
       <div class="hero-grid">
@@ -209,7 +194,7 @@
     </div>
   </section>
 
-  <!-- ================= ABOUT (PILL + dance) ================= -->
+  <!-- ABOUT -->
   <section class="band about">
     <div class="container">
       <h2 class="section-title">About</h2>
@@ -221,19 +206,17 @@
     </div>
   </section>
 
-  <!-- ================= SKILLS (NOTCHED + dance) ================= -->
+  <!-- SKILLS -->
   <section class="band skills">
     <div class="container">
       <h2 class="section-title">Skills</h2>
       <div class="cardx glass skills-wrap dance2 show">
         <div class="skills-rows">
-          <!-- concise row -->
           <div class="row-collapse">
             <span class="chip">Java</span><span class="chip">Spring Boot</span><span class="chip">React</span>
             <span class="chip">Angular</span><span class="chip">REST APIs</span><span class="chip">Kafka</span>
             <span class="chip">AWS</span><span class="chip">PostgreSQL</span>
           </div>
-          <!-- hidden extras -->
           <div id="moreSkills" class="hidden">
             <div class="row-collapse" style="margin-top:6px">
               <span class="chip">JavaScript</span><span class="chip">TypeScript</span><span class="chip">HTML5</span><span class="chip">CSS3</span>
@@ -250,53 +233,47 @@
     </div>
   </section>
 
-  <!-- ================= EXPERIENCE (LADDER + dance) ================= -->
+  <!-- EXPERIENCE (DIAGONAL LADDER) -->
   <section class="band xp">
     <div class="container">
       <h2 class="section-title">Work Experience</h2>
 
-      <div class="cardx glass ladder-wrap dance3 show">
-        <div class="ladder">
-          <!-- Rung 1 -->
-          <div class="rung glass" style="--i:0">
-            <div class="role">Full Stack Developer</div>
-            <div class="company">Infinite Computer Solutions — Atlanta, GA</div>
-            <div class="duration">Mar 2023 – Present</div>
-          </div>
-          <!-- Rung 2 -->
-          <div class="rung glass" style="--i:1">
-            <div class="role">Full Stack Developer</div>
-            <div class="company">Cardinal Health — Columbus, OH</div>
-            <div class="duration">Mar 2022 – Feb 2023</div>
-          </div>
-          <!-- Rung 3 -->
-          <div class="rung glass" style="--i:2">
-            <div class="role">Backend & API Developer</div>
-            <div class="company">WSFS Bank — Wilmington, DE</div>
-            <div class="duration">Dec 2019 – Mar 2022</div>
-          </div>
-          <!-- Rung 4 -->
-          <div class="rung glass" style="--i:3">
-            <div class="role">Software Developer</div>
-            <div class="company">TJX Companies — Framingham, MA</div>
-            <div class="duration">Jun 2018 – Nov 2019</div>
-          </div>
-          <!-- Rung 5 -->
-          <div class="rung glass" style="--i:4">
-            <div class="role">Application Developer</div>
-            <div class="company">Newgen Software Technologies — Bangalore, India</div>
-            <div class="duration">Mar 2017 – May 2018</div>
-          </div>
+      <div class="cardx glass ladder-diag dance show">
+        <!-- Newest (top-left) to oldest (bottom-right) -->
+        <div class="step glass" data-i="0">
+          <div class="role">Full Stack Developer</div>
+          <div class="company">Infinite Computer Solutions — Atlanta, GA</div>
+          <div class="duration">Mar 2023 – Present</div>
+        </div>
+
+        <div class="step glass" data-i="1">
+          <div class="role">Full Stack Developer</div>
+          <div class="company">Cardinal Health — Columbus, OH</div>
+          <div class="duration">Mar 2022 – Feb 2023</div>
+        </div>
+
+        <div class="step glass" data-i="2">
+          <div class="role">Backend & API Developer</div>
+          <div class="company">WSFS Bank — Wilmington, DE</div>
+          <div class="duration">Dec 2019 – Mar 2022</div>
+        </div>
+
+        <div class="step glass" data-i="3">
+          <div class="role">Software Developer</div>
+          <div class="company">TJX Companies — Framingham, MA</div>
+          <div class="duration">Jun 2018 – Nov 2019</div>
+        </div>
+
+        <div class="step glass" data-i="4">
+          <div class="role">Application Developer</div>
+          <div class="company">Newgen Software Technologies — Bangalore, India</div>
+          <div class="duration">Mar 2017 – May 2018</div>
         </div>
       </div>
-
-      <p class="text-center mt-2" style="color:#a7d9ff;opacity:.85;font-size:.95rem">
-        (Climbed every step — newest on the left, earliest on the right)
-      </p>
     </div>
   </section>
 
-  <!-- ================= EDUCATION (BLOB + dance) ================= -->
+  <!-- EDUCATION -->
   <section class="band edu">
     <div class="container">
       <h2 class="section-title">Education</h2>
@@ -308,7 +285,7 @@
     </div>
   </section>
 
-  <!-- ================= CONTACT (dance) ================= -->
+  <!-- CONTACT -->
   <section class="band ct">
     <div class="container">
       <h2 class="section-title">Contact</h2>
@@ -331,17 +308,22 @@
   // Year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Particles
+  // Particles (brighter cyan/purple so they pop through)
   particlesJS('particles-js',{
-    particles:{number:{value:70,density:{enable:true,value_area:800}},color:{value:"#ffffff"},
-      shape:{type:"circle"},opacity:{value:0.45,random:true},size:{value:2.8,random:true},
-      line_linked:{enable:true,distance:150,color:"#ffffff",opacity:0.35,width:1},
-      move:{enable:true,speed:1.8,random:true,out_mode:"out"}},
+    particles:{
+      number:{value:75,density:{enable:true,value_area:800}},
+      color:{value:["#67e8f9","#c084fc","#a78bfa"]},
+      shape:{type:"circle"},
+      opacity:{value:0.5,random:true},
+      size:{value:2.6,random:true},
+      line_linked:{enable:true,distance:150,color:"#a7c4ff",opacity:0.35,width:1},
+      move:{enable:true,speed:1.9,random:true,out_mode:"out"}
+    },
     interactivity:{events:{onhover:{enable:true,mode:"repulse"},onclick:{enable:true,mode:"push"}}},
     retina_detect:true
   });
 
-  // Scroll reveal for cardx
+  // Reveal
   const io = new IntersectionObserver((entries)=>{
     entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target);} });
   }, {threshold:.12});
